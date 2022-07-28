@@ -1,0 +1,500 @@
+import 'package:flutter/material.dart';
+import 'package:futurehope/components/background.dart';
+import 'package:futurehope/view/student/homestudent.dart';
+import 'package:get/get.dart';
+
+class MarkStudent extends StatelessWidget {
+   MarkStudent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Background(
+        // ignore: sized_box_for_whitespace
+        child: Container(
+          height: double.infinity,
+         // color: Colors.deepPurpleAccent,
+          child: Row(
+              children: [
+                 Expanded(
+                   flex: 2,
+                   child: Container(
+                    height: double.infinity,
+                     color: const Color(0xFF5E35B1),
+                     child: Padding(
+                       padding: const EdgeInsetsDirectional.only(
+                         top: 10,
+                         start: 10,
+                         end: 10,
+                       ),
+                       child:
+                     Column(
+                       children: [
+                         IconButton(
+                             onPressed: (() {
+                    Get.back();
+                  }),
+                             icon: const Icon(Icons.home,
+                             color: Colors.white,
+                             size: 30,),),
+                         const SizedBox(height: 80,),
+                     GestureDetector(
+                       onTap: () {},
+                       child: Container(
+                         decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(40),),
+                         clipBehavior: Clip.antiAliasWithSaveLayer,
+                         child: Container(
+                           height: 30,
+                           // width: 60,
+                           child:  const Center(
+                             child: Text('Physics',
+                               style: TextStyle(color: Color(0xFFFFFFFF),),
+                             ),),
+                           color: Colors.white.withOpacity(0.5),
+                         ),
+                       ),
+                     ),
+                         const SizedBox(height: 15,),
+                         GestureDetector(
+                           onTap: () {},
+                           child: Container(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(40),),
+                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                             child: Container(
+                               height: 30,
+                               // width: 60,
+                               child:  const Center(
+                                 child: Text('Chemistry',
+                                   style: TextStyle(color: Color(0xFFFFFFFF),),
+                                 ),),
+                               color: Colors.white.withOpacity(0.5),
+                             ),
+                           ),
+                         ),
+                         const SizedBox(height: 15,),
+                         GestureDetector(
+                           onTap: () {},
+                           child: Container(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(40),),
+                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                             child: Container(
+                               height: 30,
+                               // width: 60,
+                               child:  const Center(
+                                 child: Text('Math',
+                                   style: TextStyle(color: Color(0xFFFFFFFF),),
+                                 ),),
+                               color: Colors.white.withOpacity(0.5),
+                             ),
+                           ),
+                         ),
+                         const SizedBox(height: 15,),
+                         GestureDetector(
+                           onTap: () {},
+                           child: Container(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(40),),
+                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                             child: Container(
+                               height: 30,
+                               // width: 60,
+                               child:  const Center(
+                                 child: Text('English',
+                                   style: TextStyle(color: Color(0xFFFFFFFF),),
+                                 ),),
+                               color: Colors.white.withOpacity(0.5),
+                             ),
+                           ),
+                         ),
+                         const SizedBox(height: 15,),
+                         GestureDetector(
+                           onTap: () {},
+                           child: Container(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(40),),
+                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                             child: Container(
+                               height: 30,
+                               // width: 60,
+                               child:  const Center(
+                                 child: Text('French',
+                                   style: TextStyle(color: Color(0xFFFFFFFF),),
+                                 ),),
+                               color: Colors.white.withOpacity(0.5),
+                             ),
+                           ),
+                         ),
+                         const SizedBox(height: 15,),
+                         GestureDetector(
+                           onTap: () {},
+                           child: Container(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(40),),
+                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                             child: Container(
+                               height: 30,
+                               // width: 60,
+                               child:  const Center(
+                                 child: Text('patriotism',
+                                   style: TextStyle(color: Color(0xFFFFFFFF),),
+                                 ),),
+                               color: Colors.white.withOpacity(0.5),
+                             ),
+                           ),
+                         ),
+                         const SizedBox(height: 15,),
+                         GestureDetector(
+                           onTap: () {},
+                           child: Container(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(40),),
+                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                             child: Container(
+                               height: 30,
+                               // width: 60,
+                               child:  const Center(
+                                 child: Text('Science',
+                                   style: TextStyle(color: Color(0xFFFFFFFF),),
+                                 ),),
+                               color: Colors.white.withOpacity(0.5),
+                             ),
+                           ),
+                         ),
+                         const SizedBox(height: 15,),
+                         GestureDetector(
+                           onTap: () {},
+                           child: Container(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(40),),
+                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                             child: Container(
+                               height: 30,
+                               // width: 60,
+                               child:  const Center(
+                                 child: Text('Arabic',
+                                   style: TextStyle(color: Color(0xFFFFFFFF),),
+                                 ),),
+                               color: Colors.white.withOpacity(0.5),
+                             ),
+                           ),
+                         ),
+                         const SizedBox(height: 15,),
+                         GestureDetector(
+                           onTap: () {},
+                           child: Container(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(40),),
+                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                             child: Container(
+                               height: 30,
+                               // width: 60,
+                               child:  const Center(
+                                 child: Text('religion',
+                                   style: TextStyle(color: Color(0xFFFFFFFF),),
+                                 ),),
+                               color: Colors.white.withOpacity(0.5),
+                             ),
+                           ),
+                         ),
+                        /* Expanded(
+                           child: ListView.separated(
+                               itemBuilder: (context, index) => buildSubject(lista[index],),
+                               separatorBuilder:(context, index)=>  SizedBox(height: 15,) ,
+                               itemCount: lista.length),
+                         ),*/
+                       ],
+                     ),
+                   ),
+                 ),
+                 ),
+                Expanded(
+                  flex: 4,
+                  child: Stack(
+                    children:[
+                      const Image(image: AssetImage('images/wallpaper.jpg'),fit: BoxFit.cover,),
+                       // ignore: sized_box_for_whitespace
+                       Container(
+                      
+                      height: double.infinity,
+                      //color:   Color(0xFFF5F5F5),
+                     
+                      child:
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(
+                          top: 10,
+                          start: 10,
+                          end: 10,
+                        ),
+                        child:Column(
+                        children: [
+                          // ignore: sized_box_for_whitespace
+                          Container(
+                            height: 150,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.min,
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  children: [
+                                  const Text('M',
+                                    style:TextStyle(
+                                      color: Color(0xFFFF3D00),
+                                      fontSize: 30,
+                                      //fontWeight: FontWeight.w500,
+                        
+                                    ) ,
+                        
+                                  ),
+                                    const Text('y',
+                                      style:TextStyle(
+                                        color:Color(0xFFFF3D00),
+                                        fontSize: 30,
+                                       // fontWeight: FontWeight.w500,
+                        
+                                      ) ,
+                        
+                                    ),
+                            ],
+                                ),
+                                // SizedBox(width: 10,),
+                        
+                               // SizedBox(width: 10,),
+                                const Text('M',
+                                  style:TextStyle(
+                                    color:Color(0xFF2962FF),
+                                    fontSize: 70,
+                                    fontWeight: FontWeight.w300,
+                        
+                                  ) ,
+                        
+                                ),
+                                const Text('ar',
+                                  style:TextStyle(
+                                    color:Color(0xFFFBC02D),
+                                    fontSize: 70,
+                                    fontWeight: FontWeight.w300,
+                        
+                                  ) ,
+                        
+                                ),
+                                const Text('ks',
+                                  style:TextStyle(
+                                    color:Color(0xFF00E5FF),
+                                    //Color(0xFF1DE9B6),
+                                    fontSize: 70,
+                                    fontWeight: FontWeight.w300,
+                        
+                                  ) ,
+                        
+                                ),
+                              ],
+                            ),
+                          ),
+                         // SizedBox(height: 15,),
+                          Container(
+                            height: 2,
+                            width: double.infinity,
+                            color:  const Color(0xFFB39DDB),
+                          ),
+                        const SizedBox(height: 30,),
+                       // SingleChildScrollView(
+                        //  child:
+                          Column(
+                            children:[
+                          Container(
+                        
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                              ),
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: Row(
+                                // crossAxisAlignment: CrossAxisAlignment.,
+                                children: [
+                                  Container(
+                                    width: 8,
+                                    height: 80,
+                                    color: const Color(0xFF00B0FF),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: const [
+                                      Text('Exam1'),
+                                      SizedBox(height:10),
+                                      Text('25/5/2022'),
+                        
+                                    ],
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.only(
+                                        end: 30,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children:const [
+                        
+                                      Text('77'),
+                                        ],),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                            const SizedBox(height: 15,),
+                            Container(
+                        
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                ),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Row(
+                                  // crossAxisAlignment: CrossAxisAlignment.,
+                                  children: [
+                                    Container(
+                                      width: 8,
+                                      height: 80,
+                                      color: const Color(0xFFC6FF00),
+                                    ),
+                                    SizedBox(width: 20),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Text('Exam2'),
+                                        SizedBox(height:10),
+                                        Text('25/5/2022'),
+                        
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.only(
+                                          end: 30,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children:const [
+                        
+                                            Text('77'),
+                                          ],),
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                            const SizedBox(height: 15,),
+                            Container(
+                        
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                ),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Row(
+                                  // crossAxisAlignment: CrossAxisAlignment.,
+                                  children: [
+                                    Container(
+                                      width: 8,
+                                      height: 80,
+                                      color:  const Color(0xFFFF3D00),
+                                    ),
+                                    SizedBox(width: 20),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Text('Final'),
+                                        SizedBox(height:10),
+                                        Text('25/5/2022'),
+                        
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.only(
+                                          end: 30,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children:const [
+                        
+                                            Text('77'),
+                                          ],),
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                        
+                        
+                           /* Text('data'),
+                            Text('data'),
+                            Text('data'),
+                            Text('data'),
+                            Text('data'),*/
+                          ],
+                      ),
+                        
+                        ],
+                      ),
+                    ),
+                                  ),
+              ],),
+                ),
+              ],
+            ),
+          ),
+      ),
+    
+    );
+  }
+ /*Widget buildSubject(Type typ){
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40),),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Container(
+          height: 30,
+          // width: 60,
+          child:  Center(
+            child: Text('${typ.sub}',
+              style: TextStyle(color: Color(0xFFFFFFFF),),
+            ),),
+          color: Colors.white.withOpacity(0.5),
+        ),
+      ),
+    );
+
+  }*/
+
+ /* List <Type>lista =[
+    Type('Physics'),
+    Type('Chemistry'),
+    Type('Math'),
+    Type('English'),
+    Type('French'),
+   Type('patriotism'),
+   Type('religion'),
+    Type('Sciences'),
+    Type('Arabic'),
+  ];*/
+
+  /* List <String>lista =[
+    'Physics',
+    'Chemistry',
+
+   ];*/
+
+}
+/*
+class Type{
+  String? sub;
+  Type(this.sub);
+}
+*/
