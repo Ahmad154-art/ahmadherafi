@@ -67,7 +67,7 @@ class DisplayMark1 extends StatelessWidget {
         Container(
             width: 150,
             child: Text(
-                ' ${controller.markShowList[index].firstName} ${controller.markShowList[index].lastName}')),
+                '${controller.markShowList[index].id} ${controller.markShowList[index].firstName} ${controller.markShowList[index].lastName}')),
         //  ),
         const SizedBox(width: 70),
         Expanded(child: Text('${controller.markShowList[index].mark}')),
@@ -75,11 +75,11 @@ class DisplayMark1 extends StatelessWidget {
           child: IconButton(
             icon: const Icon(Icons.edit),
             onPressed: () {
-              print('vvcc');
-              print(index);
-              controller.markShowList[index].id = controller.markId;
-              print('0000');
-              print(controller.markShowList[1].id);
+              // print('vvcc');
+              // print(index);
+              // controller.markShowList[index].id = controller.markId;
+              // print('0000');
+              // print(controller.markShowList[1].id);
               showDialog(
                   context: context,
                   builder: (context) {
@@ -116,22 +116,25 @@ class DisplayMark1 extends StatelessWidget {
                       actions: [
                         TextButton(
                             onPressed: () {
-                              //  await controller.updateMark();
-                              controller.markShowList[index].id =
-                                  controller.markId;
-                              onPreesed(index);
-
+                              print(controller.markShowList[index].id);
+                              controller.markId =
+                                  controller.markShowList[index].id;
                               print('.......');
                               print(controller.markId);
-                              print(controller.markShowList[index].id);
-                              /*منحط هون api للتعديل منبعث القيم اللي قيمتها لا تساوي ال null مشان تتعدل بالداتا بيز وبالتالي بتتعدل عالمصفوفة اللي عبقرا منها رح تتغير قيم الواجهة */
-                              /*   if(mark.changemark==null){
-                                mark.changemark=mar[index];
-                              }
-                              if(mar[index]!= mark.changemark){
-                                mar[index]=mark.changemark;
-                                print(mar[index]);
-                              }*/
+                              print(index);
+
+                              onPreesed(index);
+
+                              // Obx(() {
+                              //   if (controller.load.isTrue) {
+                              //     return Center(
+                              //       child: CircularProgressIndicator(),
+                              //     );
+                              //   }
+                              //   return
+                              //   //onPreesed1();
+                              // });
+                              // onPreesed1();
                               Get.back();
                             },
                             child: const Text('ok')),
@@ -152,5 +155,16 @@ class DisplayMark1 extends StatelessWidget {
 
   Future<void> onPreesed(var index) async {
     await controller.updateMark(index);
+    // Obx((){
+    //  if(controller.load.isTrue){
+    //    return Center(child: CircularProgressIndicator(),);
+    //  }
+
+    // });
+    await controller.showMark();
+  }
+
+  Future<void> onPreesed1() async {
+    await controller.showMark();
   }
 }

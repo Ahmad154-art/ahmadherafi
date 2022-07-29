@@ -38,7 +38,7 @@ class ExamTypeController extends GetxController {
   var type = '';
   var load = true.obs;
   // mark update
-  var markId = 0;
+  var markId = 0  ;
   var updateStatus;
   MarkUpdate markUpdate = MarkUpdate();
   var newMark;
@@ -112,23 +112,23 @@ class ExamTypeController extends GetxController {
     print('ggg');
     print(markShowList[0].id);
     load(false);
-    for (var i = 0; i < markShowList.length; i++) {
-      print('qqq');
-      print(markShowList[i].id);
-      markShowList[i].id = markId;
-      print(markId);
-    }
+    // for (var i = 0; i < markShowList.length; i++) {
+    //   print('qqq');
+    //   print(markShowList[i].id);
+    //   markShowList[i].id = markId;
+    //   print(markId);
+    // }
   }
 
   Future<void> updateMark(int index) async {
-    for (int i = 0; i < markShowList.length; i++) {
-      markIdList.add(markShowList[i].id);
-      //markIdList[i] = markId;
-      markId = markIdList[i];
-      print(markShowList[1].id);
-      print('www');
-      print(markShowList[i].id);
-    }
+    // for (int i = 0; i < markShowList.length; i++) {
+    //   markIdList.add(markShowList[i].id);
+    //   //markIdList[i] = markId;
+    //   markId = markIdList[i];
+    //   print(markShowList[1].id);
+    //   print('www');
+    //   print(markShowList[i].id);
+    // }
     print('qwqwqw');
 
     updateStatus = await markUpdate.markUpdate(markId, newMark);
