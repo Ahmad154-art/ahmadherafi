@@ -578,7 +578,7 @@ class Mark extends StatelessWidget {
                                     // ignore: prefer_const_constructors
                                     dropdownSearchDecoration: InputDecoration(
                                       labelText: "Menu mode",
-                                      hintText: "country in menu mode",
+                                      hintText: "Subject in menu mode",
                                     ),
                                     items: examTypeController.listnamesub,
                                     onChanged: (Value) {
@@ -599,7 +599,7 @@ class Mark extends StatelessWidget {
                                     // ignore: prefer_const_constructors
                                     dropdownSearchDecoration: InputDecoration(
                                       labelText: "Menu mode",
-                                      hintText: "country in menu mode",
+                                      hintText: "Class in menu mode",
                                     ),
                                     items: examTypeController.listname,
                                     onChanged: (Value) {

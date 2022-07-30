@@ -105,7 +105,7 @@ class Home extends StatelessWidget {
                 const Padding(padding: EdgeInsets.only(left: 20)),
                 GestureDetector(
                   onTap: (() {
-                    Get.to(() => Homework());
+                    Get.to(() => Task());
                   }),
                   child: Container(
                     color: Colors.purple[50],

@@ -38,7 +38,7 @@ class ExamTypeController extends GetxController {
   var type = '';
   var load = true.obs;
   // mark update
-  var markId = 0  ;
+  var markId = 0;
   var updateStatus;
   MarkUpdate markUpdate = MarkUpdate();
   var newMark;
@@ -132,5 +132,6 @@ class ExamTypeController extends GetxController {
     print('qwqwqw');
 
     updateStatus = await markUpdate.markUpdate(markId, newMark);
+    
   }
 }

@@ -11,4 +11,6 @@ class serverConfig {
   static const examtype = '/api/type';
   static const markShow = '/api/allmark';
   static const markUpdate = '/api/mark/update/';
+  static const taskStore = '/api/homework/insert';
+  static const taskIndex = '/api/homework/index';
 }

@@ -9,51 +9,63 @@ class DisplayMark1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'Display Mark',
-          style: TextStyle(
-            color: Color(0xff35007D),
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return RefreshIndicator(
+      onRefresh: () async {
+        Future.delayed(Duration(milliseconds: 1500));
+        onPreesed1();
+        
+      },
+      displacement: 250,
+      backgroundColor: Colors.amber,
+      color: Colors.red,
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            'Display Mark',
+            style: TextStyle(
+              color: Color(0xff35007D),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          backgroundColor: Colors.white60,
         ),
-        backgroundColor: Colors.white60,
-      ),
-      body: Container(
-        width: double.infinity,
-        color: const Color(0xFFEDE7F6),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              Expanded(child: Obx(() {
-                if (controller.load.isTrue) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.purple,
-                    ),
-                  );
-                }
-                return ListView.separated(
-                    itemBuilder: (context, index) => buildItem(index, context),
-                    separatorBuilder: (context, index) => Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                            start: 10,
-                            end: 10,
-                            top: 15,
-                            bottom: 15,
+        body: Container(
+          width: double.infinity,
+          color: const Color(0xFFEDE7F6),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Expanded(child: Obx(() {
+                  if (controller.load.isTrue) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.purple,
+                      ),
+                    );
+                  }
+                  return ListView.separated(
+                      itemBuilder: (context, index) =>
+                          buildItem(index, context),
+                      separatorBuilder: (context, index) => Padding(
+                            padding: const EdgeInsetsDirectional.only(
+                              start: 10,
+                              end: 10,
+                              top: 15,
+                              bottom: 15,
+                            ),
+                            child: Container(
+                              height: 1,
+                              color: const Color(0xff35007D),
+                            ),
                           ),
-                          child: Container(
-                            height: 1,
-                            color: const Color(0xff35007D),
-                          ),
-                        ),
-                    itemCount: controller.markShowList.length);
-              })),
-            ],
+                      itemCount: controller.markShowList.length);
+                })),
+                // RefreshIndicator(child: Container(), onRefresh: onPreesed1)
+              ],
+            ),
           ),
         ),
       ),
@@ -67,7 +79,7 @@ class DisplayMark1 extends StatelessWidget {
         Container(
             width: 150,
             child: Text(
-                '${controller.markShowList[index].id} ${controller.markShowList[index].firstName} ${controller.markShowList[index].lastName}')),
+                ' ${controller.markShowList[index].firstName} ${controller.markShowList[index].lastName}')),
         //  ),
         const SizedBox(width: 70),
         Expanded(child: Text('${controller.markShowList[index].mark}')),
@@ -94,6 +106,7 @@ class DisplayMark1 extends StatelessWidget {
                           end: 10,
                         ),
                         child: TextFormField(
+                          keyboardType: TextInputType.number,
                           onChanged: (value) {
                             controller.newMark = value;
                           },
