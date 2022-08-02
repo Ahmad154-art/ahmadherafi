@@ -191,35 +191,36 @@ class Task extends StatelessWidget {
                             ),
                           )
                         ]),
+                        SizedBox(height: 5,),
+                        GestureDetector(
+                          onTap: () {
+                            onTapped();
+                            // task.increment();
+                            // task.len = 5;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: Container(
+                              height: 30,
+                              width: 300,
+                              child: const Center(
+                                child: Text(
+                                  'show',
+                                  style: TextStyle(
+                                    color: Color(0xFFFFFFFF),
+                                  ),
+                                ),
+                              ),
+                              color: const Color(0xff35007D),
+                            ),
+                          ),
+                        ),
                       ]);
                     }),
 
-                GestureDetector(
-                  onTap: () {
-                    onTapped();
-                    // task.increment();
-                    // task.len = 5;
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: Container(
-                      height: 30,
-                      width: 300,
-                      child: const Center(
-                        child: Text(
-                          'show',
-                          style: TextStyle(
-                            color: Color(0xFFFFFFFF),
-                          ),
-                        ),
-                      ),
-                      color: const Color(0xff35007D),
-                    ),
-                  ),
-                ),
                 // GetBuilder<TaskController>(
                 // init: TaskController(),
                 // builder: (task) {
@@ -263,6 +264,9 @@ class Task extends StatelessWidget {
   Widget buildShow(/*TaskModel*/ BuildContext context, index) {
     return GestureDetector(
       onTap: () {
+        controller.taskId = controller.info[index].id;
+        print('bbbbbbbbbbbbbbbbbbbbbbbbb');
+        print(controller.taskId);
         Get.to(() => DisplayTask(
             controller.info[index].subjectname,
             controller.info[index].classname,
@@ -302,6 +306,8 @@ class Task extends StatelessWidget {
                   color: Color(0xFF00E5FF),
                 ),
                 onPressed: () {
+                  controller.taskIdDelete = controller.info[index].id;
+                  print(controller.taskIdDelete);
                   showDialog(
                       context: context,
                       builder: (context) {
@@ -320,6 +326,7 @@ class Task extends StatelessWidget {
                           actions: [
                             TextButton(
                                 onPressed: () {
+                                  onPressed();
                                   Get.back();
                                 },
                                 child: const Text('Yes')),
@@ -339,6 +346,11 @@ class Task extends StatelessWidget {
   }
 
   Future<void> onTapped() async {
+    await controller.taskIndex();
+  }
+
+  Future<void> onPressed() async {
+    await controller.taskDelete();
     await controller.taskIndex();
   }
 }

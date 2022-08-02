@@ -101,14 +101,14 @@ class Mark extends StatelessWidget {
                                       // ignore: prefer_const_constructors
                                       dropdownSearchDecoration: InputDecoration(
                                         labelText: "Menu mode",
-                                        hintText: "country in menu mode",
+                                        hintText: "subject in menu mode",
                                       ),
-                                      items: controller.listname,
+                                      items: class_contoller.listnameSubject,
                                       onChanged: (Value) {
-                                        controller.name = Value;
-                                        print(controller.name);
-                                        controller.selectid();
-                                        controller.selectName();
+                                        class_contoller.subName = Value;
+                                        print(class_contoller.subName);
+                                        class_contoller.selectidsub();
+                                        class_contoller.selectNamesub();
                                       },
                                       // itemAsString: (String ) => controller.subjectList,
                                     ),

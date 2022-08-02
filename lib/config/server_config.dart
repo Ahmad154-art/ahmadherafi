@@ -13,4 +13,6 @@ class serverConfig {
   static const markUpdate = '/api/mark/update/';
   static const taskStore = '/api/homework/insert';
   static const taskIndex = '/api/homework/index';
+  static const taskUpdate = '/api/homework/update/';
+  static const taskDelete = '/api/homework/delete/';
 }

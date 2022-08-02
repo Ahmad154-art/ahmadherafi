@@ -21,8 +21,7 @@ class ClassController extends GetxController {
   late List<TeacherClass> classtlist;
   List<String> listname = [];
   List<int> listid = [];
-  List<String> listnameSubject = [];
-  List<int> listidSubject = [];
+
   List<Student> studentlist = [];
   List<String> studentNameList = [];
   List<int> studentidList = [];
@@ -50,6 +49,14 @@ class ClassController extends GetxController {
   int? select;
   var isLoading = true.obs;
 
+  List<String> listnameSubject = [];
+  List<int> listidSubject = [];
+  late List<TeacherSubject> subjectlis;
+  SubjectService serviceSubject = SubjectService();
+
+  var subId;
+  var subName;
+
   @override
   void onInit() async {
     classtlist = await service.getClass();
@@ -61,6 +68,12 @@ class ClassController extends GetxController {
     print('fffffffffffffffff');
     print(listname);
 
+    subjectlis = await serviceSubject.getSubject();
+    for (int i = 0; i < subjectlis.length; i++) {
+      listnameSubject.add(subjectlis[i].name);
+      listidSubject.add(subjectlis[i].id);
+    }
+    print(listnameSubject);
     for (int i = 0; i < studentlist.length; i++) {
       studentNameList.add(studentlist[i].firstName);
       //studentNameList.add(studentlist[i].firstName);
@@ -86,6 +99,26 @@ class ClassController extends GetxController {
     print(name);
   }
 
+
+
+
+
+
+
+
+   void selectidsub() {
+    int index = listnameSubject.indexOf(subName);
+    subId = listidSubject[index];
+    print(subId);
+    
+  }
+
+  void selectNamesub() {
+    int index = listnameSubject.indexOf(subName);
+    subName = listnameSubject[index];
+    print(subName);
+  }
+
   // void selectidSubject() {
   //   int index = listnameSubject.indexOf(nameSubject);
   //   idSubject = listidSubject[index];
@@ -100,7 +133,7 @@ class ClassController extends GetxController {
   //   nameSubject = listnameSubject[index];
   //   print(nameSubject);
   // }
-//    
+//
   Future<void> sendClass() async {
     studentlist = await studentNameService.getStudentName(id);
     isLoading(false);
@@ -128,7 +161,7 @@ class ClassController extends GetxController {
     for (int i = 0; i < studentlist.length; i++) {
       studentidList.add(studentlist[i].id);
       storeList
-          .add(MarkStoreModel(student_id: studentidList[i], mark: mark[i]));
+          .add(MarkStoreModel(student_id: studentidList[i], mark: mark[i] ));
       print('cccccccccc');
       print(storeList[i].student_id);
       print(storeList[i].mark);
@@ -151,6 +184,7 @@ class ClassController extends GetxController {
     }
     print(storeList[0].student_id);
     var jsonResponce = jsonEncode(storeList);
+    
     print(jsonResponce);
     // print(studentidList);
     // print(mark);

@@ -22,7 +22,7 @@ class DisplayTask extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff35007D),
-        title:const Text('Display Task'),
+        title: const Text('Display Task'),
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
@@ -46,7 +46,7 @@ class DisplayTask extends StatelessWidget {
                               child: Container(
                                 child: GetBuilder<Task2Controller>(
                                     builder: (task4) {
-                                      //نغيير ***********************
+                                  //نغيير ***********************
                                   return DropdownSearch<String>(
                                     mode: Mode.MENU,
                                     showSelectedItems: true,
@@ -57,10 +57,10 @@ class DisplayTask extends StatelessWidget {
                                     ),
                                     items: controller.subjectNameList,
                                     onChanged: (Value) {
-                                      controller.subjectName = Value;
-                                      print(controller.subjectName);
-                                      controller.selectidSub();
-                                      controller.selectNameSub();
+                                      controller.subNameUpdate = Value;
+                                      print(controller.subNameUpdate);
+                                      controller.selectidSubupdate();
+                                      controller.selectNameSubupdate();
                                     },
                                   );
                                 }),
@@ -81,7 +81,7 @@ class DisplayTask extends StatelessWidget {
                                 child: GetBuilder<Task2Controller>(
                                     //init:Task2Controller(),
                                     builder: (task4) {
-                                      //تغيير
+                                  //تغيير
                                   return DropdownSearch<String>(
                                     mode: Mode.MENU,
                                     showSelectedItems: true,
@@ -92,18 +92,18 @@ class DisplayTask extends StatelessWidget {
                                     ),
                                     items: controller.classNameList,
                                     onChanged: (Value) {
-                                      controller.className = Value;
+                                      controller.classNameUpdate = Value;
                                       print(']]]]]');
-                                      print(controller.className);
-                                      controller.selectid();
-                                      controller.selectName();
+                                      print(controller.classNameUpdate);
+                                      controller.selectidupdate();
+                                      controller.selectNameupdate();
                                     },
                                     // itemAsString: (String ) => controller.subjectList,
                                   );
                                 }),
                               ),
                             ),
-                           const SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Expanded(
@@ -112,7 +112,11 @@ class DisplayTask extends StatelessWidget {
                                 child: GetBuilder<Task2Controller>(
                                     builder: (task4) {
                                   return TextFormField(
-                                    decoration:const InputDecoration(
+                                    keyboardType: TextInputType.number,
+                                    onChanged: (value) {
+                                      controller.pageNumberUpdate = value;
+                                    },
+                                    decoration: const InputDecoration(
                                       hintText: 'Pagenumber',
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -132,7 +136,7 @@ class DisplayTask extends StatelessWidget {
                                 }),
                               ),
                             ),
-                          const  SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Expanded(
@@ -141,7 +145,10 @@ class DisplayTask extends StatelessWidget {
                                 child: GetBuilder<Task2Controller>(
                                     builder: (task4) {
                                   return TextFormField(
-                                    decoration:const InputDecoration(
+                                    onChanged: (value) {
+                                      controller.descreptionUpdate = value;
+                                    },
+                                    decoration: const InputDecoration(
                                       hintText: 'Description',
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -171,44 +178,44 @@ class DisplayTask extends StatelessWidget {
                           return TextButton(
                               onPressed: () {
                                 /*منحط هون api للتعديل منبعث القيم اللي قيمتها لا تساوي ال null مشان تتعدل بالداتا بيز وبالتالي بتتعدل عالمصفوفة اللي عبقرا منها رح تتغير قيم الواجهة */
-                                if (task4.chageclass == null) {
-                                  task4.chageclass = num;
-                                }
-                                if (task4.changesub == null) {
-                                  task4.changesub = sub;
-                                }
-                                if (task4.changenumpage == null) {
-                                  task4.changenumpage = pagenum;
-                                }
-                                if (task4.changedescription == null) {
-                                  task4.changedescription = desc;
-                                }
-                                if (sub != task4.changesub) {
-                                  sub = task4.changesub;
-                                  print(sub);
-                                }
-                                if (num != task4.chageclass) {
-                                  num = task4.chageclass;
-                                  print(num);
-                                }
-                                if (pagenum != task4.changenumpage) {
-                                  pagenum = task4.changenumpage;
-                                  print(pagenum);
-                                }
-                                if (desc != task4.changedescription) {
-                                  desc = task4.changedescription;
-                                  print(desc);
-                                }
-
+                                // if (task4.chageclass == null) {
+                                //   task4.chageclass = num;
+                                // }
+                                // if (task4.changesub == null) {
+                                //   task4.changesub = sub;
+                                // }
+                                // if (task4.changenumpage == null) {
+                                //   task4.changenumpage = pagenum;
+                                // }
+                                // if (task4.changedescription == null) {
+                                //   task4.changedescription = desc;
+                                // }
+                                // if (sub != task4.changesub) {
+                                //   sub = task4.changesub;
+                                //   print(sub);
+                                // }
+                                // if (num != task4.chageclass) {
+                                //   num = task4.chageclass;
+                                //   print(num);
+                                // }
+                                // if (pagenum != task4.changenumpage) {
+                                //   pagenum = task4.changenumpage;
+                                //   print(pagenum);
+                                // }
+                                // if (desc != task4.changedescription) {
+                                //   desc = task4.changedescription;
+                                //   print(desc);
+                                // }
+                                onPressed();
                                 Get.back();
                               },
-                              child:const Text('ok'));
+                              child: const Text('ok'));
                         }),
                         TextButton(
                             onPressed: () {
                               Get.back();
                             },
-                            child:const Text('cancel')),
+                            child: const Text('cancel')),
                       ],
                     );
                   });
@@ -217,7 +224,7 @@ class DisplayTask extends StatelessWidget {
         ],
       ),
       body: Stack(children: [
-       const Image(
+        const Image(
           height: double.infinity,
           width: double.infinity,
           image: AssetImage('images/wallpaper.jpg'),
@@ -239,14 +246,14 @@ class DisplayTask extends StatelessWidget {
                                 child: Container(
                                   child: Row(
                                     children: [
-                                    const  Icon(
+                                      const Icon(
                                         Icons.book,
                                         color: Color(0xff35007D),
                                       ),
-                                   const   SizedBox(
+                                      const SizedBox(
                                         width: 8,
                                       ),
-                                    const  Text(
+                                      const Text(
                                         'Subject',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -254,10 +261,10 @@ class DisplayTask extends StatelessWidget {
                                           fontSize: 15,
                                         ),
                                       ),
-                                    const  SizedBox(
+                                      const SizedBox(
                                         width: 2,
                                       ),
-                                    const  Text(
+                                      const Text(
                                         ':',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -265,12 +272,12 @@ class DisplayTask extends StatelessWidget {
                                           fontSize: 15,
                                         ),
                                       ),
-                                    const  SizedBox(
+                                      const SizedBox(
                                         width: 2,
                                       ),
                                       Text(
                                         '${sub}',
-                                        style:const TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w300,
                                           fontSize: 15,
@@ -278,7 +285,7 @@ class DisplayTask extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  decoration:const BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0xFF7E57C2),
                                     // Color(0xFF00E5FF),
                                     borderRadius: BorderRadiusDirectional.all(
@@ -287,21 +294,21 @@ class DisplayTask extends StatelessWidget {
                                   height: 50,
                                 ),
                               ),
-                            const  SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               Expanded(
                                 child: Container(
                                   child: Row(
                                     children: [
-                                    const  Icon(
+                                      const Icon(
                                         Icons.home_work_outlined,
                                         color: Color(0xff35007D),
                                       ),
-                                    const  SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                     const Text(
+                                      const Text(
                                         'Class',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -309,10 +316,10 @@ class DisplayTask extends StatelessWidget {
                                           fontSize: 15,
                                         ),
                                       ),
-                                    const  SizedBox(
+                                      const SizedBox(
                                         width: 2,
                                       ),
-                                     const Text(
+                                      const Text(
                                         ':',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -320,12 +327,12 @@ class DisplayTask extends StatelessWidget {
                                           fontSize: 15,
                                         ),
                                       ),
-                                    const  SizedBox(
+                                      const SizedBox(
                                         width: 2,
                                       ),
                                       Text(
                                         '${num}',
-                                        style:const TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w300,
                                           fontSize: 15,
@@ -333,7 +340,7 @@ class DisplayTask extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  decoration:const BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0xFF42A5F5),
                                     //Color(0xFF1E88E5),
                                     borderRadius: BorderRadiusDirectional.all(
@@ -352,14 +359,14 @@ class DisplayTask extends StatelessWidget {
                                 child: Container(
                                   child: Row(
                                     children: [
-                                    const  Icon(
+                                      const Icon(
                                         Icons.menu_book,
                                         color: Color(0xff35007D),
                                       ),
-                                    const  SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
-                                     const Text(
+                                      const Text(
                                         'Page Number',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -367,10 +374,10 @@ class DisplayTask extends StatelessWidget {
                                           fontSize: 20,
                                         ),
                                       ),
-                                    const  SizedBox(
+                                      const SizedBox(
                                         width: 2,
                                       ),
-                                     const Text(
+                                      const Text(
                                         ':',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -378,12 +385,12 @@ class DisplayTask extends StatelessWidget {
                                           fontSize: 20,
                                         ),
                                       ),
-                                     const SizedBox(
+                                      const SizedBox(
                                         width: 2,
                                       ),
                                       Text(
                                         '${pagenum}',
-                                        style:const TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w300,
                                           fontSize: 20,
@@ -391,7 +398,7 @@ class DisplayTask extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  decoration:const BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0xFF26C6DA),
                                     //Color(0xFF00ACC1),
                                     //  Color(0xFF1DE9B6),
@@ -407,7 +414,7 @@ class DisplayTask extends StatelessWidget {
                       ]),
                       flex: 1,
                     ),
-                  const  SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Expanded(
@@ -416,14 +423,14 @@ class DisplayTask extends StatelessWidget {
                           Container(
                             child: Row(
                               children: [
-                             const   Icon(
+                                const Icon(
                                   Icons.edit_road_sharp,
                                   color: Color(0xff35007D),
                                 ),
-                               const SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
-                              const  Text(
+                                const Text(
                                   'Discription',
                                   style: TextStyle(
                                     color: Colors.white,
@@ -431,10 +438,10 @@ class DisplayTask extends StatelessWidget {
                                     fontSize: 20,
                                   ),
                                 ),
-                              const  SizedBox(
+                                const SizedBox(
                                   width: 2,
                                 ),
-                              const  Text(
+                                const Text(
                                   ':',
                                   style: TextStyle(
                                     color: Colors.white,
@@ -442,14 +449,14 @@ class DisplayTask extends StatelessWidget {
                                     fontSize: 20,
                                   ),
                                 ),
-                              const  SizedBox(
+                                const SizedBox(
                                   width: 2,
                                 ),
                                 Expanded(
                                   child: Text(
                                     '${desc}',
                                     maxLines: 3,
-                                    style:const TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w300,
                                       fontSize: 20,
@@ -458,7 +465,7 @@ class DisplayTask extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            decoration:const BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color(0xFFFF6D00),
                               //Color(0xFFFFD600),
                               //Color(0xFFB39DDB),
@@ -477,5 +484,10 @@ class DisplayTask extends StatelessWidget {
             }),
       ]),
     );
+  }
+
+  Future<void> onPressed() async {
+    await controller.taskUpdate();
+    //await controller.taskIndex();
   }
 }
