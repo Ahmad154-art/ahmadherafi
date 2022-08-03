@@ -10,44 +10,43 @@ import 'package:http/http.dart' as http;
 
 class MarkStore {
   var url = Uri.parse(serverConfig.domainName + serverConfig.markstore);
-  Future<bool> storeMark(List<MarkStoreModel> storeList
+  Future<bool> storeMark(List<StudentMarkElement> storeList
       //, var id, var idSubject, var type, var year
       ) async {
-    int i = 0;
+    // int i = 0;
+    var bode = studentMarkToJson(StudentMark(studentMark: storeList));
+    var student_mark = jsonEncode(storeList);
+    print(bode);
+    print('8888');
+   // print(student_mark);
 
-    var json = jsonEncode(storeList);
-    print(json);
-    print('222222222222222');
-    for (var i = 0; i < storeList.length; i++) {
-      print(storeList[i].student_id);
-      print(storeList[i].mark);
-    }
-    print(storeList[1].student_id);
-    print(storeList[1].mark);
+    // print('222222222222222');
+    // for (var i = 0; i < storeList.length; i++) {
+    //   print(storeList[i].student_id);
+    //   print(storeList[i].mark);
+    // }
+    // print(storeList[1].student_id);
+    // print(storeList[1].mark);
     // Map<String , String> data;
     // data = {"student_id":storeList };
     // for (int i = 0; i < storeList.length; i++) {
     //   data.addAll("student_id${[i]}": ${storeList[i].student_id});
 
     // }
-    
-    var responce = await http.post(
-      url,
-     headers: {
-      "Accept": "application/json"
-    }, body: {
-      "student_id[0]": "${storeList[0].student_id}",
-      "mark[0]": "${storeList[0].mark}",
-      "student_id[1]": "${storeList[1].student_id}",
-      "mark[1]": "${storeList[1].mark}",
-      "class_id": "1",
-      "subject_id": "1",
-      "type": "exam1",
-      "year": "2022"
-    }
-    );
+
+    var responce = await http.post(url,
+        headers: {"Content-Type": "application/json"},
+        body: bode
+        //jsonEncode()
+        //student_mark,
+        //{"student_mark": student_mark},
+
+        );
+
     print(responce.statusCode);
+   // print(student_mark);
     print(responce.body);
+    print(bode);
     if (responce.statusCode == 200) {
       var jsonResponce = jsonDecode(responce.body);
       return true;

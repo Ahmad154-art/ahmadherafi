@@ -36,7 +36,7 @@ class ClassController extends GetxController {
 
     //{"mark": ''},
   ];
-  List<MarkStoreModel> storeList = [];
+  List<StudentMarkElement> storeList = [];
 
   //************ store end */
 
@@ -56,6 +56,14 @@ class ClassController extends GetxController {
 
   var subId;
   var subName;
+  var year;
+
+  //*********radio */
+  var type;
+  // var radio = false.obs;
+  // void radio1() {
+  //   radio(!(radio.value));
+  // }
 
   @override
   void onInit() async {
@@ -99,18 +107,10 @@ class ClassController extends GetxController {
     print(name);
   }
 
-
-
-
-
-
-
-
-   void selectidsub() {
+  void selectidsub() {
     int index = listnameSubject.indexOf(subName);
     subId = listidSubject[index];
     print(subId);
-    
   }
 
   void selectNamesub() {
@@ -160,10 +160,17 @@ class ClassController extends GetxController {
   void storeMark() {
     for (int i = 0; i < studentlist.length; i++) {
       studentidList.add(studentlist[i].id);
-      storeList
-          .add(MarkStoreModel(student_id: studentidList[i], mark: mark[i] ));
+      storeList.add(StudentMarkElement(
+          student_Id: studentidList[i],
+          mark: mark[i],
+          subjectId: subId,
+          classId: id,
+          year: year,
+          type: type));
       print('cccccccccc');
-      print(storeList[i].student_id);
+     // print(storeList[0].subId);
+      print(subId);
+     // print(storeList[i].student_id);
       print(storeList[i].mark);
 
       // storeList.add(studentlist[i].id);
@@ -182,9 +189,11 @@ class ClassController extends GetxController {
       // });
       // map1["student_id"]  studentlist[i].id;
     }
-    print(storeList[0].student_id);
+    print('9999');
+   // print(storeList[0].subId);
+   // print(storeList[0].student_id);
     var jsonResponce = jsonEncode(storeList);
-    
+
     print(jsonResponce);
     // print(studentidList);
     // print(mark);

@@ -135,13 +135,27 @@ class Mark extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(padding: EdgeInsets.only(left: 10)),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 11),
+                                       Container(
                                     width: 100,
-                                    child: const TextField(
-                                      keyboardType: TextInputType.datetime,
+                                    child: DropdownSearch<String>(
+                                      mode: Mode.MENU,
+                                      showSelectedItems: true,
+                                      // ignore: prefer_const_constructors
+                                      dropdownSearchDecoration: InputDecoration(
+                                        labelText: "Menu mode",
+                                        hintText: "exam in menu mode",
+                                      ),
+                                      items: ["exam1","exam2","final","exam4","exam5","final2"],
+                                      onChanged: (Value) {
+                                        class_contoller.type = Value;
+                                        print(class_contoller.type);
+                                        // class_contoller.selectid();
+                                        // class_contoller.selectName();
+                                      },
+                                      // itemAsString: (String ) => controller.subjectList,
                                     ),
                                   ),
+                                 
 
                                   // DropdownButton(
                                   //   items: const [
@@ -197,104 +211,119 @@ class Mark extends StatelessWidget {
                                   // ),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Row(children: [
-                                      const Text('Exame 1'),
-                                      Radio<bool>(
-                                          // focusColor:const Color(0xff35007D),
-                                          //hoverColor:const Color(0xff35007D) ,
-                                          activeColor: const Color(0xff35007D),
-                                          value: false,
-                                          groupValue: mark.check,
-                                          onChanged: (val) {
-                                            // mark.radio(val!);
-                                            // print(mark.check);
-                                            mark.increment();
-                                            print(mark.id);
-                                          }),
-                                    ]),
-                                  ),
-                                  Expanded(
-                                    child: Row(children: [
-                                      const Text('Exame 2'),
-                                      Radio(
-                                          activeColor: const Color(0xff35007D),
-                                          value: false,
-                                          groupValue: true,
-                                          onChanged: (va) {
-                                            mark.increment();
-                                            print(mark.id);
-                                          }),
-                                    ]),
-                                  ),
-                                  Expanded(
-                                    child: Row(children: [
-                                      const Text('Final 1'),
-                                      Radio(
-                                          activeColor: const Color(0xff35007D),
-                                          value: true,
-                                          groupValue: true,
-                                          onChanged: (va) {
-                                            mark.increment();
-                                            print(mark.id);
-                                          }),
-                                    ]),
-                                  ),
-                                ],
-                              ),
+                              // Row(
+                              //   children: [
+                              //     Expanded(
+                              //       child: Row(children: [
+                              //         const Text('Exame 1'),
+                              //         Radio<bool>(
+                              //             // focusColor:const Color(0xff35007D),
+                              //             //hoverColor:const Color(0xff35007D) ,
+                              //             activeColor: const Color(0xff35007D),
+                              //             value: true,
+                              //             groupValue: mark.check,
+                              //             onChanged: (val) {
+                              //               //class_contoller.radio1();
+                              //               // mark.radio(val!);
+                              //               // print(mark.check);
+                              //               mark.increment();
+                              //               print(mark.id);
+                              //             }),
+                              //       ]),
+                              //     ),
+                              //     Expanded(
+                              //       child: Row(children: [
+                              //         const Text('Exame 2'),
+                              //         Radio(
+                              //             activeColor: const Color(0xff35007D),
+                              //             value: false,
+                              //             groupValue: true,
+                              //             onChanged: (va) {
+                              //               mark.increment();
+                              //               print(mark.id);
+                              //             }),
+                              //       ]),
+                              //     ),
+                              //     Expanded(
+                              //       child: Row(children: [
+                              //         const Text('Final 1'),
+                              //         Radio(
+                              //             activeColor: const Color(0xff35007D),
+                              //             value: true,
+                              //             groupValue: true,
+                              //             onChanged: (va) {
+                              //               mark.increment();
+                              //               print(mark.id);
+                              //             }),
+                              //       ]),
+                              //     ),
+                              //   ],
+                              // ),
                               // const SizedBox(height: 5,),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Row(children: [
-                                      const Text('Exame 3'),
-                                      Radio<bool>(
-                                          // focusColor:const Color(0xff35007D),
-                                          //hoverColor:const Color(0xff35007D) ,
-                                          activeColor: const Color(0xff35007D),
-                                          value: false,
-                                          groupValue: mark.check,
-                                          onChanged: (val) {
-                                            // mark.radio(val!);
-                                            // print(mark.check);
-                                            mark.increment();
-                                            print(mark.id);
-                                          }),
-                                    ]),
-                                  ),
-                                  Expanded(
-                                    child: Row(children: [
-                                      const Text('Exame 4'),
-                                      Radio(
-                                          activeColor: const Color(0xff35007D),
-                                          value: false,
-                                          groupValue: true,
-                                          onChanged: (va) {
-                                            mark.increment();
-                                            print(mark.id);
-                                          }),
-                                    ]),
-                                  ),
-                                  Expanded(
-                                    child: Row(children: [
-                                      const Text('Final 2'),
-                                      Radio(
-                                          activeColor: const Color(0xff35007D),
-                                          value: true,
-                                          groupValue: true,
-                                          onChanged: (va) {
-                                            mark.increment();
-                                            print(mark.id);
-                                          }),
-                                    ]),
-                                  ),
-                                ],
-                              ),
+                              // Row(
+                              //   children: [
+                              //     Expanded(
+                              //       child: Row(children: [
+                              //         const Text('Exame 3'),
+                              //         Radio<bool>(
+                              //             // focusColor:const Color(0xff35007D),
+                              //             //hoverColor:const Color(0xff35007D) ,
+                              //             activeColor: const Color(0xff35007D),
+                              //             value: false,
+                              //             groupValue: mark.check,
+                              //             onChanged: (val) {
+                              //               // mark.radio(val!);
+                              //               // print(mark.check);
+                              //               mark.increment();
+                              //               print(mark.id);
+                              //             }),
+                              //       ]),
+                              //     ),
+                              //     Expanded(
+                              //       child: Row(children: [
+                              //         const Text('Exame 4'),
+                              //         Radio(
+                              //             activeColor: const Color(0xff35007D),
+                              //             value: false,
+                              //             groupValue: true,
+                              //             onChanged: (va) {
+                              //               mark.increment();
+                              //               print(mark.id);
+                              //             }),
+                              //       ]),
+                              //     ),
+                              //     Expanded(
+                              //       child: Row(children: [
+                              //         const Text('Final 2'),
+                              //         Radio(
+                              //             activeColor: const Color(0xff35007D),
+                              //             value: true,
+                              //             groupValue: true,
+                              //             onChanged: (va) {
+                              //               mark.increment();
+                              //               print(mark.id);
+                              //             }),
+                              //       ]),
+                              //     ),
+                              //   ],
+                              // ),
                               const SizedBox(
                                 height: 20,
                               ),
+                              
+                             Container(
+                                    margin: EdgeInsets.only(top: 11),
+                                    width: double.infinity,
+                                    child: TextField(
+                                      decoration:
+                                          InputDecoration(hintText: 'year'),
+                                      onChanged: ( value) {
+                                        class_contoller.year = value;
+                                      },
+                                      keyboardType: TextInputType.datetime,
+                                    ),
+                                  ),
+
                               GestureDetector(
                                 onTap: () {
                                   onTapped();
@@ -972,7 +1001,7 @@ class Mark extends StatelessWidget {
               /* onSaved: (va){
                 //mark.markeditingcontroller=va;
                 print(mark.markeditingcontroller);},*/
-              onFieldSubmitted: (val) {
+              onFieldSubmitted: ( dynamic val) {
                 // mark.markeditingcontroller=val;
                 //print(mark.markeditingcontroller!.text);
                 // class_contoller.store = val;
@@ -1000,7 +1029,7 @@ class Mark extends StatelessWidget {
       onTap: () {
         examTypeController.type = examTypeController.examList[index].type;
         markShowFunc();
-        
+
         print('qqqqttttt');
         print(examTypeController.type);
         Get.to(DisplayMark1());
