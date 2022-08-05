@@ -1,238 +1,97 @@
 import 'package:flutter/material.dart';
-import 'package:futurehope/components/background.dart';
-import 'package:futurehope/view/student/homestudent.dart';
 import 'package:get/get.dart';
 
-class MarkStudent extends StatelessWidget {
-   MarkStudent({Key? key}) : super(key: key);
+import '../../controller/student_mark_contoller.dart';
 
+class MarkStudent extends StatelessWidget {
+  MarkStudent({Key? key}) : super(key: key);
+
+  //final sub=Get.put(MarkStuController());
+  MarkStuController sub = Get.put(MarkStuController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Background(
-        // ignore: sized_box_for_whitespace
-        child: Container(
-          height: double.infinity,
-         // color: Colors.deepPurpleAccent,
-          child: Row(
+    return RefreshIndicator(
+      onRefresh: () async {
+        await sub.subjectStudent();
+        await sub.getResult();
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Image(
+              height: double.infinity,
+              width: double.infinity,
+              image: AssetImage('images/wallpaper.jpg'),
+              fit: BoxFit.cover,
+            ),
+            Row(
               children: [
-                 Expanded(
-                   flex: 2,
-                   child: Container(
+                Expanded(
+                  flex: 2,
+                  child: Container(
                     height: double.infinity,
-                     color: const Color(0xFF5E35B1),
-                     child: Padding(
-                       padding: const EdgeInsetsDirectional.only(
-                         top: 10,
-                         start: 10,
-                         end: 10,
-                       ),
-                       child:
-                     Column(
-                       children: [
-                         IconButton(
-                             onPressed: (() {
-                    Get.back();
-                  }),
-                             icon: const Icon(Icons.home,
-                             color: Colors.white,
-                             size: 30,),),
-                         const SizedBox(height: 80,),
-                     GestureDetector(
-                       onTap: () {},
-                       child: Container(
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(40),),
-                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                         child: Container(
-                           height: 30,
-                           // width: 60,
-                           child:  const Center(
-                             child: Text('Physics',
-                               style: TextStyle(color: Color(0xFFFFFFFF),),
-                             ),),
-                           color: Colors.white.withOpacity(0.5),
-                         ),
-                       ),
-                     ),
-                         const SizedBox(height: 15,),
-                         GestureDetector(
-                           onTap: () {},
-                           child: Container(
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(40),),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             child: Container(
-                               height: 30,
-                               // width: 60,
-                               child:  const Center(
-                                 child: Text('Chemistry',
-                                   style: TextStyle(color: Color(0xFFFFFFFF),),
-                                 ),),
-                               color: Colors.white.withOpacity(0.5),
-                             ),
-                           ),
-                         ),
-                         const SizedBox(height: 15,),
-                         GestureDetector(
-                           onTap: () {},
-                           child: Container(
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(40),),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             child: Container(
-                               height: 30,
-                               // width: 60,
-                               child:  const Center(
-                                 child: Text('Math',
-                                   style: TextStyle(color: Color(0xFFFFFFFF),),
-                                 ),),
-                               color: Colors.white.withOpacity(0.5),
-                             ),
-                           ),
-                         ),
-                         const SizedBox(height: 15,),
-                         GestureDetector(
-                           onTap: () {},
-                           child: Container(
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(40),),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             child: Container(
-                               height: 30,
-                               // width: 60,
-                               child:  const Center(
-                                 child: Text('English',
-                                   style: TextStyle(color: Color(0xFFFFFFFF),),
-                                 ),),
-                               color: Colors.white.withOpacity(0.5),
-                             ),
-                           ),
-                         ),
-                         const SizedBox(height: 15,),
-                         GestureDetector(
-                           onTap: () {},
-                           child: Container(
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(40),),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             child: Container(
-                               height: 30,
-                               // width: 60,
-                               child:  const Center(
-                                 child: Text('French',
-                                   style: TextStyle(color: Color(0xFFFFFFFF),),
-                                 ),),
-                               color: Colors.white.withOpacity(0.5),
-                             ),
-                           ),
-                         ),
-                         const SizedBox(height: 15,),
-                         GestureDetector(
-                           onTap: () {},
-                           child: Container(
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(40),),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             child: Container(
-                               height: 30,
-                               // width: 60,
-                               child:  const Center(
-                                 child: Text('patriotism',
-                                   style: TextStyle(color: Color(0xFFFFFFFF),),
-                                 ),),
-                               color: Colors.white.withOpacity(0.5),
-                             ),
-                           ),
-                         ),
-                         const SizedBox(height: 15,),
-                         GestureDetector(
-                           onTap: () {},
-                           child: Container(
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(40),),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             child: Container(
-                               height: 30,
-                               // width: 60,
-                               child:  const Center(
-                                 child: Text('Science',
-                                   style: TextStyle(color: Color(0xFFFFFFFF),),
-                                 ),),
-                               color: Colors.white.withOpacity(0.5),
-                             ),
-                           ),
-                         ),
-                         const SizedBox(height: 15,),
-                         GestureDetector(
-                           onTap: () {},
-                           child: Container(
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(40),),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             child: Container(
-                               height: 30,
-                               // width: 60,
-                               child:  const Center(
-                                 child: Text('Arabic',
-                                   style: TextStyle(color: Color(0xFFFFFFFF),),
-                                 ),),
-                               color: Colors.white.withOpacity(0.5),
-                             ),
-                           ),
-                         ),
-                         const SizedBox(height: 15,),
-                         GestureDetector(
-                           onTap: () {},
-                           child: Container(
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(40),),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             child: Container(
-                               height: 30,
-                               // width: 60,
-                               child:  const Center(
-                                 child: Text('religion',
-                                   style: TextStyle(color: Color(0xFFFFFFFF),),
-                                 ),),
-                               color: Colors.white.withOpacity(0.5),
-                             ),
-                           ),
-                         ),
-                        /* Expanded(
-                           child: ListView.separated(
-                               itemBuilder: (context, index) => buildSubject(lista[index],),
-                               separatorBuilder:(context, index)=>  SizedBox(height: 15,) ,
-                               itemCount: lista.length),
-                         ),*/
-                       ],
-                     ),
-                   ),
-                 ),
-                 ),
+                    color: Color(0xFF5E35B1),
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                        top: 10,
+                        start: 10,
+                        end: 10,
+                      ),
+                      child: Column(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            icon: Icon(
+                              Icons.home,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 80,
+                          ),
+                          Expanded(child: GetBuilder<MarkStuController>(
+                              builder: (controller) {
+                            return Obx(() {
+                              if (sub.isLoading.isTrue) {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.purple,
+                                  ),
+                                );
+                              }
+                              return ListView.separated(
+                                  itemBuilder: (context, index) =>
+                                      buildSubject(index),
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                  itemCount: sub.data.length);
+                            });
+                          })),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 Expanded(
                   flex: 4,
-                  child: Stack(
-                    children:[
-                      const Image(image: AssetImage('images/wallpaper.jpg'),fit: BoxFit.cover,),
-                       // ignore: sized_box_for_whitespace
-                       Container(
-                      
-                      height: double.infinity,
-                      //color:   Color(0xFFF5F5F5),
-                     
-                      child:
-                      Padding(
-                        padding: const EdgeInsetsDirectional.only(
-                          top: 10,
-                          start: 10,
-                          end: 10,
-                        ),
-                        child:Column(
+                  child: Container(
+                    height: double.infinity,
+                    //  color:   Color(0xFFF5F5F5),
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                        top: 10,
+                        start: 10,
+                        end: 10,
+                      ),
+                      child: Column(
                         children: [
-                          // ignore: sized_box_for_whitespace
                           Container(
-                            height: 150,
+                            height: 130,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -240,261 +99,204 @@ class MarkStudent extends StatelessWidget {
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   mainAxisSize: MainAxisSize.min,
-                                  // ignore: prefer_const_literals_to_create_immutables
                                   children: [
-                                  const Text('M',
-                                    style:TextStyle(
-                                      color: Color(0xFFFF3D00),
-                                      fontSize: 30,
-                                      //fontWeight: FontWeight.w500,
-                        
-                                    ) ,
-                        
-                                  ),
-                                    const Text('y',
-                                      style:TextStyle(
-                                        color:Color(0xFFFF3D00),
+                                    Text(
+                                      'M',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF3D00),
                                         fontSize: 30,
-                                       // fontWeight: FontWeight.w500,
-                        
-                                      ) ,
-                        
+                                        //fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                            ],
+                                    Text(
+                                      'y',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF3D00),
+                                        fontSize: 30,
+                                        // fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 // SizedBox(width: 10,),
-                        
-                               // SizedBox(width: 10,),
-                                const Text('M',
-                                  style:TextStyle(
-                                    color:Color(0xFF2962FF),
+
+                                // SizedBox(width: 10,),
+                                Text(
+                                  'M',
+                                  style: TextStyle(
+                                    color: Color(0xFF2962FF),
                                     fontSize: 70,
                                     fontWeight: FontWeight.w300,
-                        
-                                  ) ,
-                        
+                                  ),
                                 ),
-                                const Text('ar',
-                                  style:TextStyle(
-                                    color:Color(0xFFFBC02D),
+                                Text(
+                                  'ar',
+                                  style: TextStyle(
+                                    color: Color(0xFFFBC02D),
                                     fontSize: 70,
                                     fontWeight: FontWeight.w300,
-                        
-                                  ) ,
-                        
+                                  ),
                                 ),
-                                const Text('ks',
-                                  style:TextStyle(
-                                    color:Color(0xFF00E5FF),
+                                Text(
+                                  'ks',
+                                  style: TextStyle(
+                                    color: Color(0xFF00E5FF),
                                     //Color(0xFF1DE9B6),
                                     fontSize: 70,
                                     fontWeight: FontWeight.w300,
-                        
-                                  ) ,
-                        
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                         // SizedBox(height: 15,),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Container(
                             height: 2,
                             width: double.infinity,
-                            color:  const Color(0xFFB39DDB),
+                            color: Color(0xFF512DA8),
                           ),
-                        const SizedBox(height: 30,),
-                       // SingleChildScrollView(
-                        //  child:
-                          Column(
-                            children:[
-                          Container(
-                        
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                              ),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: Row(
-                                // crossAxisAlignment: CrossAxisAlignment.,
-                                children: [
-                                  Container(
-                                    width: 8,
-                                    height: 80,
-                                    color: const Color(0xFF00B0FF),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: const [
-                                      Text('Exam1'),
-                                      SizedBox(height:10),
-                                      Text('25/5/2022'),
-                        
-                                    ],
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                        end: 30,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children:const [
-                        
-                                      Text('77'),
-                                        ],),
-                                    ),
-                                  ),
-                                ],
-                              )),
-                            const SizedBox(height: 15,),
-                            Container(
-                        
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                ),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Row(
-                                  // crossAxisAlignment: CrossAxisAlignment.,
-                                  children: [
-                                    Container(
-                                      width: 8,
-                                      height: 80,
-                                      color: const Color(0xFFC6FF00),
-                                    ),
-                                    SizedBox(width: 20),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: const [
-                                        Text('Exam2'),
-                                        SizedBox(height:10),
-                                        Text('25/5/2022'),
-                        
-                                      ],
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.only(
-                                          end: 30,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children:const [
-                        
-                                            Text('77'),
-                                          ],),
-                                      ),
-                                    ),
-                                  ],
+                          SizedBox(
+                            height: 30,
+                          ),
+                          // SingleChildScrollView(
+                          //  child:
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Expanded(child: GetBuilder<MarkStuController>(
+                                  builder: (controller) {
+                                    return Obx(() {
+                                      if (sub.load.isTrue) {
+                                        return const Center(
+                                          child: CircularProgressIndicator(
+                                            color: Colors.purple,
+                                          ),
+                                        );
+                                      }
+                                      return ListView.separated(
+                                          itemBuilder: (context, index) =>
+                                              buildItem(
+                                                  sub.Exams[index],
+                                                  sub.Marks[index],
+                                                  sub.color[index],
+                                                  index),
+                                          separatorBuilder: (context, index) =>
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                          itemCount: sub.result.length);
+                                    });
+                                  },
                                 )),
-                            const SizedBox(height: 15,),
-                            Container(
-                        
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                ),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Row(
-                                  // crossAxisAlignment: CrossAxisAlignment.,
-                                  children: [
-                                    Container(
-                                      width: 8,
-                                      height: 80,
-                                      color:  const Color(0xFFFF3D00),
-                                    ),
-                                    SizedBox(width: 20),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: const [
-                                        Text('Final'),
-                                        SizedBox(height:10),
-                                        Text('25/5/2022'),
-                        
-                                      ],
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.only(
-                                          end: 30,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children:const [
-                        
-                                            Text('77'),
-                                          ],),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                        
-                        
-                           /* Text('data'),
-                            Text('data'),
-                            Text('data'),
-                            Text('data'),
-                            Text('data'),*/
-                          ],
-                      ),
-                        
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                                  ),
-              ],),
+                  ),
                 ),
               ],
             ),
-          ),
+          ],
+        ),
       ),
-    
     );
   }
- /*Widget buildSubject(Type typ){
+
+  Widget buildSubject(index) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        sub.subjectId = sub.data[index].id;
+        print(sub.subjectId);
+        onpressed();
+
+        //print(sub.data[index].id);
+      },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40),),
+          borderRadius: BorderRadius.circular(40),
+        ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
-          height: 30,
+          height: 40,
           // width: 60,
-          child:  Center(
-            child: Text('${typ.sub}',
-              style: TextStyle(color: Color(0xFFFFFFFF),),
-            ),),
+          child: Center(
+            child: Text(
+              '${sub.data[index].name}',
+              style: TextStyle(
+                color: Color(0xFFFFFFFF),
+              ),
+            ),
+          ),
           color: Colors.white.withOpacity(0.5),
         ),
       ),
     );
+  }
 
-  }*/
+  Widget buildItem(String type, Type typ, color, index) {
+    return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Row(
+          // crossAxisAlignment: CrossAxisAlignment.,
+          children: [
+            Container(
+              width: 10,
+              height: 80,
+              color: color,
+            ),
+            SizedBox(width: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${type}',
+                  style: TextStyle(
+                    color: Color(0xff35007D),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  '${sub.result[index].createdAt}',
+                  style: TextStyle(
+                    color: Color(0xff35007D),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  end: 30,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      '${sub.result[index].mark}',
+                      style: TextStyle(
+                          color: Color(0xff35007D),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
 
- /* List <Type>lista =[
-    Type('Physics'),
-    Type('Chemistry'),
-    Type('Math'),
-    Type('English'),
-    Type('French'),
-   Type('patriotism'),
-   Type('religion'),
-    Type('Sciences'),
-    Type('Arabic'),
-  ];*/
-
-  /* List <String>lista =[
-    'Physics',
-    'Chemistry',
-
-   ];*/
-
+  Future<void> onpressed() async {
+    await sub.getResult();
+  }
 }
-/*
-class Type{
-  String? sub;
-  Type(this.sub);
-}
-*/

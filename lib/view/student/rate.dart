@@ -5,12 +5,13 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 
 class Rate extends StatefulWidget {
-  RateController rate = Get.put(RateController());
+ 
   @override
   State<Rate> createState() => RateState();
 }
 
 class RateState extends State<Rate> {
+   RateController rate = Get.put(RateController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +24,7 @@ class RateState extends State<Rate> {
               borderData: FlBorderData(show: false),
               lineBarsData: [
                 LineChartBarData(spots: [
-                  const FlSpot(1, 97),
+                   FlSpot(1, 97),
                   const FlSpot(2, 90),
                   const FlSpot(3, 85),
                   const FlSpot(4, 90),

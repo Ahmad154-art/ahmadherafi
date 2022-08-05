@@ -17,4 +17,7 @@ class serverConfig {
   static const taskDelete = '/api/homework/delete/';
   static const absenceIndex = '/api/absence/index/';
   static const weeklyprogram = '/api/weak/class/';
+  static const studentSubject = '/api/subject/';
+  static const result = '/api/mark/student';
+  static const detail = '/api/homework/show/';
 }

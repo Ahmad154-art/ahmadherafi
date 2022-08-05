@@ -20,10 +20,9 @@ class SplashController extends GetxController {
     String? token = await storage.read('token');
     //int role =  storage.read(role);
 
-    if (token != null ) {
-      
+    if (token != null) {
       Get.offAllNamed("/home");
-     // storage.delet('token');
+      // storage.delet('token');
     }
     // else if(token != null ){
     //    Get.offAllNamed("/studenthome");

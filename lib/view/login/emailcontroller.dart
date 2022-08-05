@@ -33,7 +33,7 @@ class EmailController extends GetxController {
     userId = prefs.getInt('id');
     print('hhhhhh');
     print(userId);
-    prefs.setInt('class_id', id[0].classId!);
+    prefs.setInt('class_id', id[0].classId??0);
     classId = prefs.getInt('class_id');
     print('ddddd');
     print(classId);
