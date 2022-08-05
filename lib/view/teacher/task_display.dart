@@ -275,14 +275,17 @@ class DisplayTask extends StatelessWidget {
                                       const SizedBox(
                                         width: 2,
                                       ),
-                                      Text(
-                                        '${sub}',
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 15,
-                                        ),
-                                      ),
+                                      GetBuilder<TaskIndexController>(
+                                          builder: (controller) {
+                                        return Text(
+                                          '${sub}',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        );
+                                      })
                                     ],
                                   ),
                                   decoration: const BoxDecoration(

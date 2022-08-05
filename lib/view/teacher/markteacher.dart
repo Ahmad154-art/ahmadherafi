@@ -135,7 +135,7 @@ class Mark extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(padding: EdgeInsets.only(left: 10)),
-                                       Container(
+                                  Container(
                                     width: 100,
                                     child: DropdownSearch<String>(
                                       mode: Mode.MENU,
@@ -145,7 +145,14 @@ class Mark extends StatelessWidget {
                                         labelText: "Menu mode",
                                         hintText: "exam in menu mode",
                                       ),
-                                      items: ["exam1","exam2","final","exam4","exam5","final2"],
+                                      items: const [
+                                        "exam1",
+                                        "exam2",
+                                        "final",
+                                        "exam4",
+                                        "exam5",
+                                        "final2"
+                                      ],
                                       onChanged: (Value) {
                                         class_contoller.type = Value;
                                         print(class_contoller.type);
@@ -155,7 +162,6 @@ class Mark extends StatelessWidget {
                                       // itemAsString: (String ) => controller.subjectList,
                                     ),
                                   ),
-                                 
 
                                   // DropdownButton(
                                   //   items: const [
@@ -310,19 +316,18 @@ class Mark extends StatelessWidget {
                               const SizedBox(
                                 height: 20,
                               ),
-                              
-                             Container(
-                                    margin: EdgeInsets.only(top: 11),
-                                    width: double.infinity,
-                                    child: TextField(
-                                      decoration:
-                                          InputDecoration(hintText: 'year'),
-                                      onChanged: ( value) {
-                                        class_contoller.year = value;
-                                      },
-                                      keyboardType: TextInputType.datetime,
-                                    ),
-                                  ),
+
+                              Container(
+                                margin: EdgeInsets.only(top: 11),
+                                width: double.infinity,
+                                child: TextField(
+                                  decoration: InputDecoration(hintText: 'year'),
+                                  onChanged: (value) {
+                                    class_contoller.year = value;
+                                  },
+                                  keyboardType: TextInputType.datetime,
+                                ),
+                              ),
 
                               GestureDetector(
                                 onTap: () {
@@ -503,27 +508,31 @@ class Mark extends StatelessWidget {
                                       ),
                                     );
                                   }
-                                  return ListView.separated(
-                                      itemBuilder: (context, index) {
-                                        /*  if(mark.table==0){
+                                  return GetBuilder<ClassController>(
+                                      builder: (controller) {
+                                    return ListView.separated(
+                                        itemBuilder: (context, index) {
+                                          /*  if(mark.table==0){
                                        return  ;
                                      }*/
-                                        return buildItem(index);
-                                      },
-                                      separatorBuilder: (context, index) =>
-                                          Padding(
-                                            padding: const EdgeInsetsDirectional
-                                                .only(
-                                              start: 10,
-                                              end: 10,
+                                          return buildItem(index);
+                                        },
+                                        separatorBuilder: (context, index) =>
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .only(
+                                                start: 10,
+                                                end: 10,
+                                              ),
+                                              child: Container(
+                                                height: 1,
+                                                color: const Color(0xff35007D),
+                                              ),
                                             ),
-                                            child: Container(
-                                              height: 1,
-                                              color: const Color(0xff35007D),
-                                            ),
-                                          ),
-                                      itemCount:
-                                          class_contoller.studentlist.length);
+                                        itemCount:
+                                            class_contoller.studentlist.length);
+                                  });
                                 }),
                                 flex: 8,
                               ),
@@ -750,29 +759,33 @@ class Mark extends StatelessWidget {
                                     ),
                                   );
                                 }
-                                return ListView.separated(
-                                  itemBuilder: (context, index) {
-                                    if (mark2.i == 0) {
-                                      mark2.len = 1;
-                                      return Center(
-                                        child: Text(
-                                          'Select choises to show mark',
-                                          style: TextStyle(
-                                              color: Colors.grey[600]),
-                                        ),
+                                return GetBuilder<ExamTypeController>(
+                                    builder: (controller) {
+                                  return ListView.separated(
+                                    itemBuilder: (context, index) {
+                                      if (mark2.i == 0) {
+                                        mark2.len = 1;
+                                        return Center(
+                                          child: Text(
+                                            'Select choises to show mark',
+                                            style: TextStyle(
+                                                color: Colors.grey[600]),
+                                          ),
+                                        );
+                                      } else {
+                                        // mark2.len=5;
+                                        return buildShow(index);
+                                      }
+                                    },
+                                    separatorBuilder: (context, index) {
+                                      return const SizedBox(
+                                        height: 10,
                                       );
-                                    } else {
-                                      // mark2.len=5;
-                                      return buildShow(index);
-                                    }
-                                  },
-                                  separatorBuilder: (context, index) {
-                                    return const SizedBox(
-                                      height: 10,
-                                    );
-                                  },
-                                  itemCount: examTypeController.examList.length,
-                                );
+                                    },
+                                    itemCount:
+                                        examTypeController.examList.length,
+                                  );
+                                });
                               }),
                             ),
 
@@ -1001,7 +1014,7 @@ class Mark extends StatelessWidget {
               /* onSaved: (va){
                 //mark.markeditingcontroller=va;
                 print(mark.markeditingcontroller);},*/
-              onFieldSubmitted: ( dynamic val) {
+              onFieldSubmitted: (dynamic val) {
                 // mark.markeditingcontroller=val;
                 //print(mark.markeditingcontroller!.text);
                 // class_contoller.store = val;

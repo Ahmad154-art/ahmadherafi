@@ -137,6 +137,7 @@ class ClassController extends GetxController {
   Future<void> sendClass() async {
     studentlist = await studentNameService.getStudentName(id);
     isLoading(false);
+    update();
     print(id);
     print('jjjjjjjjjjjjjjjjjjjj');
     // studentlist = await studentNameService.getStudentName(1);
@@ -168,9 +169,9 @@ class ClassController extends GetxController {
           year: year,
           type: type));
       print('cccccccccc');
-     // print(storeList[0].subId);
+      // print(storeList[0].subId);
       print(subId);
-     // print(storeList[i].student_id);
+      // print(storeList[i].student_id);
       print(storeList[i].mark);
 
       // storeList.add(studentlist[i].id);
@@ -190,8 +191,8 @@ class ClassController extends GetxController {
       // map1["student_id"]  studentlist[i].id;
     }
     print('9999');
-   // print(storeList[0].subId);
-   // print(storeList[0].student_id);
+    // print(storeList[0].subId);
+    // print(storeList[0].student_id);
     var jsonResponce = jsonEncode(storeList);
 
     print(jsonResponce);

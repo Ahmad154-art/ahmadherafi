@@ -191,7 +191,9 @@ class Task extends StatelessWidget {
                             ),
                           )
                         ]),
-                        SizedBox(height: 5,),
+                        SizedBox(
+                          height: 5,
+                        ),
                         GestureDetector(
                           onTap: () {
                             onTapped();
@@ -235,22 +237,25 @@ class Task extends StatelessWidget {
                           ),
                         );
                       }
-                      return ListView.separated(
-                        itemBuilder: (context, index) {
-                          if (controller.t == 0) {
-                            return Text('data');
-                          } else {
-                            return buildShow(context, index);
-                          }
-                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(
-                            height: 10,
-                          );
-                        },
-                        itemCount: controller.info.length,
-                        // mark2.len,
-                      );
+                      return GetBuilder<TaskIndexController>(
+                          builder: (controller) {
+                        return ListView.separated(
+                          itemBuilder: (context, index) {
+                            if (controller.info.isEmpty) {
+                              return Text('data');
+                            } else {
+                              return buildShow(context, index);
+                            }
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              height: 10,
+                            );
+                          },
+                          itemCount: controller.info.length,
+                          // mark2.len,
+                        );
+                      });
                     }))
                 //}),
               ],
@@ -347,10 +352,12 @@ class Task extends StatelessWidget {
 
   Future<void> onTapped() async {
     await controller.taskIndex();
+    //await controller.taskUpdate();
   }
 
   Future<void> onPressed() async {
     await controller.taskDelete();
+
     await controller.taskIndex();
   }
 }

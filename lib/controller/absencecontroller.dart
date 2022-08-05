@@ -8,6 +8,7 @@ class AbsantController extends GetxController {
   var absence = 'absence';
   var presence = 'presence';
  // List<RxBool> blabla = [];
+ 
 
   increment() {
     body++;

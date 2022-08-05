@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:futurehope/components/background.dart';
 import 'package:futurehope/view/student/markstudent.dart';
 import 'package:futurehope/view/student/rate.dart';
+import 'package:futurehope/view/student/weeklyprogramstudent.dart';
+import 'package:futurehope/view/teacher/weeklyprogramteacher.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../storage.dart';
+import '../login/logoutcontoller.dart';
 
 class StudentHome extends StatefulWidget {
   @override
@@ -10,18 +16,51 @@ class StudentHome extends StatefulWidget {
 }
 
 class StudentState extends State<StudentHome> {
+  LogoutController controller = Get.put(LogoutController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
+            const Text('d'),
+            const Text('d'),
+            // ignore: prefer_const_constructors
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: Text('logout'),
+              onTap: onTapped
+            ),
+            // Container(
+            //   height: double.infinity,
+            //   width: double.infinity,
+            //   color: Colors.amber,
+            // ),
+            //      Container(
+            //    // width: 2000,
+            // //    height: 2000,
+            //       // ignore: prefer_const_constructors
+            //       decoration: BoxDecoration(
+            //         image: const DecorationImage(image: AssetImage('images/wallpaper.jpg'),fit: BoxFit.contain)
+            //       ),
+
+            //   ),
+          ],
+        ),
+      ),
       body: Background(
         child: ListView(
           children: [
+            
             Stack(
               children: [
                  AppBar(
                 // shadowColor: Colors.amberAccent,
                 // ignore: prefer_const_literals_to_create_immutables
                 flexibleSpace: Column(children: [
+                  
                   const Padding(padding: EdgeInsets.only(top: 150)),
                   //const CircleAvatar(maxRadius: 50),
                 ]),
@@ -36,9 +75,10 @@ class StudentState extends State<StudentHome> {
                 ),
               ),
                Column(children:
-
+                
                       // ignore: prefer_const_literals_to_create_immutables
                       [
+                        
                 //  Padding(padding: EdgeInsets.all(50)),
                 const Padding(padding: EdgeInsets.only(left: 1000, top: 100)),
                 const CircleAvatar(
@@ -57,6 +97,7 @@ class StudentState extends State<StudentHome> {
                   ),
               ],
             ),
+            
                Padding(padding: EdgeInsets.only(top: 25)),
                Row(
               children: [
@@ -114,9 +155,9 @@ class StudentState extends State<StudentHome> {
               children: [
                 const Padding(padding: EdgeInsets.only(left: 20)),
                 GestureDetector(
-                  // onTap: (() {
-                  //   Get.to(() => WeeklyProgram());
-                  // }),
+                   onTap: (() {
+                     Get.to(() => WeeklyStu());
+                   }),
                   // onTap:() => print('d'),
                   child: Container(
                     color: Colors.purple[50],
@@ -217,6 +258,7 @@ class StudentState extends State<StudentHome> {
                           size: 50,
                         ),
                         const Text('Rate'),
+                        
                       ],
                     ),
                   ),
@@ -241,10 +283,27 @@ class StudentState extends State<StudentHome> {
               selectedItemColor: Colors.purple,
               currentIndex: 1,
             ),
+            
           ],
         ),
       ),
     );
+   
+  }
+  SecureStorge storage = new SecureStorge();
+ void onTapped() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //storage.delet('token');
+   await controller.logOut();
+    if (controller.logout) {
+      print('lll');
+      Get.offAllNamed("/email");
+      storage.delet('token');
+      prefs.remove('id');
+      prefs.remove('class_id');
+      
+    }
+
    
   }
 }

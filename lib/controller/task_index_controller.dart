@@ -34,6 +34,7 @@ class TaskIndexController extends GetxController {
   var taskStatus = true;
 
   List<TheDataIs> info = [];
+
   TaskIndexService taskIndexService = TaskIndexService();
   var t;
   var isLoading = true.obs;
@@ -74,7 +75,7 @@ class TaskIndexController extends GetxController {
   void selectid() {
     int index = classNameList.indexOf(className);
     classId = classIdList[index];
-    
+
     //select = classId;
     // print(select);
     print('%%%%%%%%%%%%%%%%%%%');
@@ -84,21 +85,20 @@ class TaskIndexController extends GetxController {
   void selectName() {
     int index = classNameList.indexOf(className);
     className = classNameList[index];
-    
+
     print(className);
   }
 
   void selectidSub() {
     int index = subjectNameList.indexOf(subjectName);
     subjectId = subjectIdList[index];
-    
+
     print(subjectId);
   }
 
   void selectNameSub() {
     int index = subjectNameList.indexOf(subjectName);
     subjectName = subjectNameList[index];
-    
 
     print(subjectName);
   }
@@ -106,6 +106,7 @@ class TaskIndexController extends GetxController {
   Future<void> taskIndex() async {
     info = await taskIndexService.taskIndex(classId, subjectId);
     isLoading(false);
+    update();
   }
 
 //*******************task update */
@@ -142,6 +143,7 @@ class TaskIndexController extends GetxController {
     await updateService.taskUpdate(taskId, subIdUpdate, classIdUpdate,
         descreptionUpdate, pageNumberUpdate);
     load(false);
+    update();
   }
 
   TaskDeleteService deleteService = TaskDeleteService();

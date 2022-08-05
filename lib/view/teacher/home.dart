@@ -10,6 +10,7 @@ import 'package:futurehope/view/teacher/markteacher.dart';
 
 import 'package:futurehope/view/teacher/weeklyprogramteacher.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //import '../components/background.dart';
 import '../../components/background.dart';
@@ -198,7 +199,7 @@ class Home extends StatelessWidget {
                 //         ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(Absence());
+                    Get.to(Absant());
                   },
                   child: Container(
                     color: Colors.purple[50],
@@ -332,10 +333,9 @@ class Home extends StatelessWidget {
             const Text('d'),
             // ignore: prefer_const_constructors
             ListTile(
-              leading: const Icon(Icons.logout),
-              title: Text('logout'),
-              onTap: onTapped
-            ),
+                leading: const Icon(Icons.logout),
+                title: Text('logout'),
+                onTap: onTapped),
             // Container(
             //   height: double.infinity,
             //   width: double.infinity,
@@ -357,14 +357,16 @@ class Home extends StatelessWidget {
   }
 
   SecureStorge storage = new SecureStorge();
- void onTapped() async{
-    
+  void onTapped() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     //storage.delet('token');
-   await controller.logOut();
+    await controller.logOut();
     if (controller.logout) {
       print('lll');
       Get.offAllNamed("/email");
       storage.delet('token');
+      prefs.remove('id');
+      prefs.remove('class_id');
     }
 
     // sharepref!.getString('token');

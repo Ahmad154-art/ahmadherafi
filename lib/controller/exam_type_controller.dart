@@ -45,6 +45,7 @@ class ExamTypeController extends GetxController {
   List<int> markIdList = [];
   //end mark update
   List<ResultElementShow> markShowList = [];
+  
   @override
   void onInit() async {
     classtlist = await classService.getClass();
@@ -104,11 +105,13 @@ class ExamTypeController extends GetxController {
 
   Future<void> examType() async {
     examList = await service.examType(year, classId, subId);
+    update();
     isLoading(false);
   }
 
   Future<void> showMark() async {
     markShowList = await markShowSerrvice.markShow(year, classId, subId, type);
+    update();
     print('ggg');
     print(markShowList[0].id);
     load(false);
@@ -132,6 +135,5 @@ class ExamTypeController extends GetxController {
     print('qwqwqw');
 
     updateStatus = await markUpdate.markUpdate(markId, newMark);
-    
   }
 }

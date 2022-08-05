@@ -1,12 +1,14 @@
+import 'package:futurehope/model/user_model.dart';
 import 'package:futurehope/view/login/emailcontroller.dart';
 import 'package:futurehope/view/login/login_service.dart';
 import 'package:get/get.dart';
 
 class CodeController extends GetxController {
+  List<Id> id = [];
   EmailController controller = Get.find();
   var email = '';
   var code = '';
-  int role =0;
+  int role = 0;
   var loginStatus = false;
   // var email2 = '';
 

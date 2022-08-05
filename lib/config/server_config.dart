@@ -3,8 +3,8 @@ class serverConfig {
   //auth
   static const sendVerify = '/api/send_verify';
   static const login = '/api/verify';
-  static const subject = '/api/teacher/subject/1';
-  static const Class = '/api/teacher/class/1';
+  static const subject = '/api/teacher/subject/';
+  static const Class = '/api/teacher/class/';
   static const logout = '/api/logout';
   static const studentName = '/api/classroom/student/';
   static const markstore = '/api/mark/insert';
@@ -15,4 +15,6 @@ class serverConfig {
   static const taskIndex = '/api/homework/index';
   static const taskUpdate = '/api/homework/update/';
   static const taskDelete = '/api/homework/delete/';
+  static const absenceIndex = '/api/absence/index/';
+  static const weeklyprogram = '/api/weak/class/';
 }

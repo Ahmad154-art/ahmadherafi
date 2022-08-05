@@ -77,10 +77,10 @@ class Email extends StatelessWidget {
 
   void onClick() async {
     await controller.sendEmail();
-    if (controller.signUpStatus) {
+    //if (controller.signUpStatus) {
      // sharepref!.getString('token');
       Get.toNamed("/code");
-    }
+   // }
     //  Get.to(Code());
   }
 }

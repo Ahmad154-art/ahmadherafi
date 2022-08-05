@@ -1,6 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:futurehope/controller/task_index_controller.dart';
 import 'package:futurehope/controller/task_write_contoller.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +11,7 @@ class WriteTask extends StatelessWidget {
   WriteTask({Key? key}) : super(key: key);
   final task3 = Get.lazyPut(() => Task2Controller());
   TaskWriteController controller = Get.put(TaskWriteController());
+  TaskIndexController taskIndexController = Get.put(TaskIndexController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -214,5 +216,6 @@ class WriteTask extends StatelessWidget {
 
   Future<void> onPressed() async {
     await controller.taskStore();
+    await taskIndexController.taskIndex();
   }
 }

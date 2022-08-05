@@ -13,6 +13,7 @@ class LoginService {
   int role1 = 0;
   var message = '';
   var token = '';
+  int id = 0;
 
   var url = Uri.parse(serverConfig.domainName + serverConfig.login);
   Future<bool> login(var email, var code) async {
@@ -27,6 +28,7 @@ class LoginService {
         });
     //print('aa');
     print(response.statusCode);
+    print(response.body);
     print(email);
 
     print('********');
@@ -39,15 +41,19 @@ class LoginService {
     if (response.statusCode == 200) {
       //  message = jsonresponse['status'];
       var jsonResponse = jsonDecode(response.body);
+      print('vvvvvvvvvv');
+      print(jsonResponse);
       // message = jsonResponse['status'];
       //print(message);
       message = jsonResponse['status'];
+     // id = jsonResponse[["id"]];
+     // print(object)
       print(message);
       role1 = jsonResponse['role'];
       token = jsonResponse['token'];
       UserInformation.user_Token = token;
-     SecureStorge storge = SecureStorge();
-    await storge.save('token', UserInformation.user_Token);
+      SecureStorge storge = SecureStorge();
+      await storge.save('token', UserInformation.user_Token);
       print(UserInformation.user_Token);
       print(role1);
       print('22');

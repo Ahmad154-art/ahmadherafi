@@ -7,6 +7,7 @@ import 'package:futurehope/config/server_config.dart';
 import 'package:futurehope/model/class_model.dart';
 import 'package:futurehope/model/subject_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ClassService {
   var message;
@@ -14,9 +15,11 @@ class ClassService {
   //var List;
 
   //List post = [];
-  var url = Uri.parse(serverConfig.domainName + serverConfig.Class);
 
   Future<List<TeacherClass>> getClass() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+   int? userId = prefs.getInt('id');
+    var url = Uri.parse(serverConfig.domainName + serverConfig.Class + "$userId");
     var response = await http.get(
       url,
       headers: {'Accept': 'application/json'},
@@ -29,7 +32,7 @@ class ClassService {
       var teacherClass = TeacherClasses.fromJson(jsonDecode(response.body));
 
       print('5555555555');
-     // print(teacherSubjects.teacherSubject.toList());
+      // print(teacherSubjects.teacherSubject.toList());
       return teacherClass.teacherClass;
     } else {
       return [];

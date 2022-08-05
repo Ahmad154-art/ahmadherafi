@@ -11,9 +11,9 @@ class DisplayMark1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
+       // await controller.showMark();
         Future.delayed(Duration(milliseconds: 1500));
-        onPreesed1();
-        
+       // onPreesed1();
       },
       displacement: 250,
       backgroundColor: Colors.amber,
@@ -46,22 +46,24 @@ class DisplayMark1 extends StatelessWidget {
                       ),
                     );
                   }
-                  return ListView.separated(
-                      itemBuilder: (context, index) =>
-                          buildItem(index, context),
-                      separatorBuilder: (context, index) => Padding(
-                            padding: const EdgeInsetsDirectional.only(
-                              start: 10,
-                              end: 10,
-                              top: 15,
-                              bottom: 15,
+                  return GetBuilder<ExamTypeController>(builder: (controller) {
+                    return ListView.separated(
+                        itemBuilder: (context, index) =>
+                            buildItem(index, context),
+                        separatorBuilder: (context, index) => Padding(
+                              padding: const EdgeInsetsDirectional.only(
+                                start: 10,
+                                end: 10,
+                                top: 15,
+                                bottom: 15,
+                              ),
+                              child: Container(
+                                height: 1,
+                                color: const Color(0xff35007D),
+                              ),
                             ),
-                            child: Container(
-                              height: 1,
-                              color: const Color(0xff35007D),
-                            ),
-                          ),
-                      itemCount: controller.markShowList.length);
+                        itemCount: controller.markShowList.length);
+                  });
                 })),
                 // RefreshIndicator(child: Container(), onRefresh: onPreesed1)
               ],

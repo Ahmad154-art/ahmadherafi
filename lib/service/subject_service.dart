@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:futurehope/config/server_config.dart';
 import 'package:futurehope/model/subject_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SubjectService {
   var message;
@@ -13,9 +14,12 @@ class SubjectService {
   //var List;
 
   //List post = [];
-  var url = Uri.parse(serverConfig.domainName + serverConfig.subject);
+  
 
   Future<List<TeacherSubject>> getSubject() async {
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+   int? userId = prefs.getInt('id');
+   var url = Uri.parse(serverConfig.domainName + serverConfig.subject + '$userId');
     var response = await http.get(
       url,
       headers: {'Accept': 'application/json'},
