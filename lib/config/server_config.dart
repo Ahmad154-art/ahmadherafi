@@ -20,4 +20,7 @@ class serverConfig {
   static const studentSubject = '/api/subject/';
   static const result = '/api/mark/student';
   static const detail = '/api/homework/show/';
+  static const rate = '/api/level/';
+  static const absant = '/api/absence/show/';
+  static const installment = '/api/free/show/';
 }

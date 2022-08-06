@@ -7,6 +7,7 @@ import 'package:futurehope/model/user.dart';
 import 'package:futurehope/model/user_model.dart';
 import 'package:futurehope/storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EmailService {
   //var token = '';
@@ -26,7 +27,12 @@ class EmailService {
     // SecureStorge storge = SecureStorge();
     if (response.statusCode == 200) {
       var jsonResponce = userFromJson(response.body);
-
+      var json = jsonDecode(response.body);
+      var role = json["role"];
+      print('yyy');
+      print(role);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setInt("role", role);
 
       // var jsonResponse = jsonDecode(response.body);
       //token = jsonResponse['token'];

@@ -9,7 +9,7 @@ import 'package:futurehope/view/login/email.dart';
 import 'package:futurehope/view/student/homestudent.dart';
 import 'package:futurehope/view/student/markstudent.dart';
 import 'package:futurehope/view/student/rate.dart';
-import 'package:futurehope/view/student/schoolfee.dart';
+import 'package:futurehope/view/student/installment.dart';
 import 'package:futurehope/view/student/test.dart';
 import 'package:futurehope/view/teacher/absenceteacher.dart';
 import 'package:futurehope/view/teacher/home.dart';

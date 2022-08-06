@@ -28,6 +28,7 @@ class EmailController extends GetxController {
       print(id[i].id);
       print('llllllllllllllllll');
       print(id[i].classId);
+      
     }
     prefs.setInt('id', id[0].id);
     userId = prefs.getInt('id');

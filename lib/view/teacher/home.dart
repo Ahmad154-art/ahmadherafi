@@ -367,6 +367,7 @@ class Home extends StatelessWidget {
       storage.delet('token');
       prefs.remove('id');
       prefs.remove('class_id');
+      prefs.remove("role");
     }
 
     // sharepref!.getString('token');

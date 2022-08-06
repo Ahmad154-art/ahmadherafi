@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:futurehope/components/background.dart';
+import 'package:futurehope/controller/installment_controller.dart';
+import 'package:futurehope/controller/student_absant_controller.dart';
 import 'package:futurehope/controller/student_homework_controller.dart';
 import 'package:futurehope/controller/student_mark_contoller.dart';
+import 'package:futurehope/studentcontroller/ratecontroller.dart';
+import 'package:futurehope/view/student/abcensestudent.dart';
 import 'package:futurehope/view/student/homeworkstudent.dart';
+import 'package:futurehope/view/student/installment.dart';
 import 'package:futurehope/view/student/markstudent.dart';
 import 'package:futurehope/view/student/rate.dart';
+
 import 'package:futurehope/view/student/weeklyprogramstudent.dart';
 import 'package:futurehope/view/teacher/weeklyprogramteacher.dart';
 import 'package:get/get.dart';
@@ -23,6 +29,10 @@ class StudentState extends State<StudentHome> {
   LogoutController controller = Get.put(LogoutController());
   HomeworkShowController homeworkShowController =
       Get.put(HomeworkShowController());
+  RateController rateController = Get.put(RateController());
+  AbsantStuController absantStuController = Get.put(AbsantStuController());
+  InstallmentController installmentController =
+      Get.put(InstallmentController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,9 +193,10 @@ class StudentState extends State<StudentHome> {
                 ),
                 const Padding(padding: EdgeInsets.only(left: 20)),
                 GestureDetector(
-                  // onTap: () {
-                  //   Get.to(Absence());
-                  // },
+                  onTap: () {
+                    onTag();
+                    Get.to(AbsantStu());
+                  },
                   child: Container(
                     color: Colors.purple[50],
                     // color: const Color(0xffC4DFCB),
@@ -212,9 +223,10 @@ class StudentState extends State<StudentHome> {
               children: [
                 const Padding(padding: EdgeInsets.only(left: 20)),
                 GestureDetector(
-                  // onTap: (() {
-                  //   Get.to(() => WeeklyProgram());
-                  // }),
+                  onTap: (() {
+                    payment();
+                    Get.to(() => Installment());
+                  }),
                   // onTap:() => print('d'),
                   child: Container(
                     color: Colors.purple[50],
@@ -240,6 +252,7 @@ class StudentState extends State<StudentHome> {
                 GestureDetector(
                   onTap: () {
                     Get.to(Rate());
+                    rate();
                   },
                   child: Container(
                     color: Colors.purple[50],
@@ -296,6 +309,7 @@ class StudentState extends State<StudentHome> {
       storage.delet('token');
       prefs.remove('id');
       prefs.remove('class_id');
+      prefs.remove("role");
     }
   }
 
@@ -307,5 +321,17 @@ class StudentState extends State<StudentHome> {
 
   Future<void> onclick() async {
     await homeworkShowController.homeworsShow();
+  }
+
+  Future<void> rate() async {
+    await rateController.result();
+  }
+
+  Future<void> onTag() async {
+    await absantStuController.studentAbsant();
+  }
+
+  Future<void> payment() async {
+    await installmentController.installment();
   }
 }
