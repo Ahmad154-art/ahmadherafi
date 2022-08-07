@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controller/student_absant_controller.dart';
 
@@ -12,6 +13,9 @@ class AbsantStu extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
+        if (controller.percentStatus) {
+          await controller.percent();
+        }
         await controller.studentAbsant();
       },
       child: Scaffold(
@@ -85,18 +89,33 @@ class AbsantStu extends StatelessWidget {
               Column(children: [
                 Container(
                   padding: EdgeInsets.only(right: 50),
-                  child: PieChart(PieChartData(centerSpaceRadius: 65,
-                      // centerSpaceColor: Colors.pink,
+                  child: Obx(() {
+                    if (controller.load.isTrue) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.purple,
+                        ),
+                      );
+                    }
+                    return GetBuilder<AbsantStuController>(
+                        builder: (controller) {
+                      return PieChart(PieChartData(centerSpaceRadius: 65,
+                          // centerSpaceColor: Colors.pink,
 
-                      sections: [
-                        PieChartSectionData(
-                            value: 80,
-                            color: Colors.purple,
-                            showTitle: true,
-                            titleStyle: TextStyle(fontStyle: FontStyle.italic)),
-                        PieChartSectionData(
-                            value: 20, color: Colors.orange, showTitle: true),
-                      ])),
+                          sections: [
+                            PieChartSectionData(
+                                value: controller.presence.toDouble(),
+                                color: Colors.purple,
+                                showTitle: true,
+                                titleStyle:
+                                    TextStyle(fontStyle: FontStyle.italic)),
+                            PieChartSectionData(
+                                value: controller.percentAbsant.toDouble(),
+                                color: Colors.orange,
+                                showTitle: true),
+                          ]));
+                    });
+                  }),
                   height: 250,
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -105,10 +124,24 @@ class AbsantStu extends StatelessWidget {
                   ),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                 ),
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: Text('presence'),),
+                    Container(width: 10,height: 10,color: Colors.purple,)
+                  ],
+                ),
+                SizedBox(height: 5,),
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(padding: EdgeInsets.only(left: 15)),
+                    Center(child: Text('absant '),),
+                    Container(width: 10,height: 10,color: Colors.orange,)
+                  ],
+                ),
               ]),
-              SizedBox(
-                height: 10,
-              ),
+              // SizedBox(
+              //   height: 5,
+              // ),
               GetBuilder<AbsantStuController>(
                   init: AbsantStuController(),
                   builder: (data) {

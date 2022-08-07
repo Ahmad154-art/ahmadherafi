@@ -310,6 +310,8 @@ class StudentState extends State<StudentHome> {
       prefs.remove('id');
       prefs.remove('class_id');
       prefs.remove("role");
+      prefs.remove('presence');
+      prefs.remove("absant");
     }
   }
 
@@ -329,6 +331,7 @@ class StudentState extends State<StudentHome> {
 
   Future<void> onTag() async {
     await absantStuController.studentAbsant();
+    await absantStuController.percent();
   }
 
   Future<void> payment() async {

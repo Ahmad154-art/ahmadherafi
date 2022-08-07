@@ -23,4 +23,5 @@ class serverConfig {
   static const rate = '/api/level/';
   static const absant = '/api/absence/show/';
   static const installment = '/api/free/show/';
+  static const percent = '/api/absence/absence/';
 }
