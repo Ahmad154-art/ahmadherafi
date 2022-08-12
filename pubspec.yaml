@@ -44,6 +44,7 @@ dependencies:
   dropdown_search: ^3.0.1
   flutter_launcher_icons: ^0.9.3
   shared_preferences: ^2.0.15
+  custom_top_navigator: ^0.0.3
 flutter_icons:
   android: "launcher_icon"
   ios: true

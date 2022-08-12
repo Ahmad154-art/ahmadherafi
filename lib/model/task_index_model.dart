@@ -1,23 +1,23 @@
 // To parse this JSON data, do
 //
-//     final information = informationFromJson(jsonString);
+//     final percent = percentFromJson(jsonString);
 
 import 'dart:convert';
 
-Information informationFromJson(String str) => Information.fromJson(json.decode(str));
+Percent percentFromJson(String str) => Percent.fromJson(json.decode(str));
 
-String informationToJson(Information data) => json.encode(data.toJson());
+String percentToJson(Percent data) => json.encode(data.toJson());
 
-class Information {
-    Information({
+class Percent {
+    Percent({
       required  this.status,
-      required  this.theDataIs,
+      required this.theDataIs,
     });
 
     bool status;
     List<TheDataIs> theDataIs;
 
-    factory Information.fromJson(Map<String, dynamic> json) => Information(
+    factory Percent.fromJson(Map<String, dynamic> json) => Percent(
         status: json["status"],
         theDataIs: List<TheDataIs>.from(json["the data is "].map((x) => TheDataIs.fromJson(x))),
     );
@@ -30,15 +30,15 @@ class Information {
 
 class TheDataIs {
     TheDataIs({
-       required this.id,
-      required this.classId,
-       required this.subjectId,
-       required this.numberPage,
-      required this.descreption,
-       required this.createdAt,
-      required  this.updatedAt,
-      required this.subjectname,
-      required  this.classname,
+    required    this.id,
+   required     this.classId,
+    required   this.subjectId,
+    required   this.numberPage,
+     required   this.descreption,
+    required   this.createdAt,
+    required    this.updatedAt,
+    required    this.subjectname,
+      required this.classname,
     });
 
     int id;
@@ -46,8 +46,8 @@ class TheDataIs {
     int subjectId;
     int numberPage;
     String descreption;
-    DateTime createdAt;
-    DateTime updatedAt;
+    String createdAt;
+    String updatedAt;
     String subjectname;
     String classname;
 
@@ -57,8 +57,8 @@ class TheDataIs {
         subjectId: json["subject_id"],
         numberPage: json["number_page"],
         descreption: json["descreption"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
         subjectname: json["subjectname"],
         classname: json["classname"],
     );
@@ -69,8 +69,8 @@ class TheDataIs {
         "subject_id": subjectId,
         "number_page": numberPage,
         "descreption": descreption,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt,
+        "updated_at": updatedAt,
         "subjectname": subjectname,
         "classname": classname,
     };

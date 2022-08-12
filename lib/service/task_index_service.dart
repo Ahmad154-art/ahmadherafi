@@ -17,7 +17,7 @@ class TaskIndexService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      var result = informationFromJson(response.body);
+      var result = percentFromJson(response.body);
       print(result);
       return result.theDataIs;
     } else if (response.statusCode == 500) {

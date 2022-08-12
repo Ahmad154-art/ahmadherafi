@@ -10,7 +10,7 @@ import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:http/http.dart' as http;
 
 class StudentNameService {
-   int id = 0;
+//  int id = 0;
   var token = '';
 //int role = 0;
 
@@ -23,6 +23,7 @@ class StudentNameService {
     );
     //print('aa');
     print(response.statusCode);
+    print(id);
     print(response.body);
     SecureStorge storge = SecureStorge();
     if (response.statusCode == 200) {

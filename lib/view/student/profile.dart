@@ -1,0 +1,407 @@
+import 'package:flutter/material.dart';
+import 'package:futurehope/controller/library_contoller.dart';
+import 'package:futurehope/view/student/homestudent.dart';
+import 'package:futurehope/view/teacher/library.dart';
+import 'package:get/get.dart';
+
+import '../../controller/profile_contoller.dart';
+
+class StuProfile1 extends StatelessWidget {
+  TeacherProfileController controller = Get.put(TeacherProfileController());
+  LibralyController libralyController = Get.put(LibralyController());
+  // const StuProfile1({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          const Image(
+            height: double.infinity,
+            width: double.infinity,
+            image: AssetImage('images/wallpaper.jpg'),
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.white.withOpacity(0.8),
+              ),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'M',
+                          style: TextStyle(
+                            color: Color(0xFFAD1457),
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          'y',
+                          style: TextStyle(
+                            color: Color(0xFF2979FF),
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'pr',
+                          style: TextStyle(
+                            color: Color(0xFF5E35B1),
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          'of',
+                          style: TextStyle(
+                            color: Color(0xFF26C6DA),
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          'ile',
+                          style: TextStyle(
+                            color: Color(0xFFFF6F00),
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    //  const   SizedBox(
+                    //       height: 10,
+                    //     ),
+                    GetBuilder<TeacherProfileController>(
+                        //init: StuProfileController(),
+                        builder: (pro) {
+                      return Expanded(
+                        child: ListView(children: [
+                          Container(
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(children: [
+                                  Container(
+                                    height: 90,
+                                    width: 90,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xFFD1C4E9),
+                                    ),
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    child: const Center(
+                                        child: Icon(
+                                      Icons.person,
+                                      size: 60,
+                                      color: Colors.white,
+                                    )),
+                                  ),
+                                  const SizedBox(
+                                    width: 18,
+                                  ),
+                                  Container(
+                                    width: 125,
+                                    //color: Colors.deepPurple,
+                                    // height: 90,
+                                    // child: Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${controller.userdata[0].firstName} ${controller.userdata[0].lastName}',
+                                          style: const TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff35007D),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          '${controller.userdata[0].name}',
+                                          style: const TextStyle(
+                                            //  fontSize: 20,
+                                            //fontWeight: FontWeight.w600,
+                                            color: Color(0xff35007D),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    //  ),
+                                  )
+                                ]),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.person_outlined,
+                                      color: Color(0xFF1DE9B6),
+                                      size: 23,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      'Mother Name',
+                                      style: TextStyle(
+                                        //  fontSize: 20,
+                                        //fontWeight: FontWeight.w600,
+                                        color: Color(0xff35007D),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    start: 27,
+                                  ),
+                                  child: Text(
+                                    '${controller.userdata[0].mother}',
+                                    style: const TextStyle(
+                                      color: Color(0xff35007D),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Container(
+                                  height: 2,
+                                  width: double.infinity,
+                                  color: const Color(0xFFB39DDB),
+                                ),
+
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.person_outlined,
+                                      color: Color(0xFF1DE9B6),
+                                      size: 23,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      'Father Name',
+                                      style: TextStyle(
+                                        //  fontSize: 20,
+                                        //fontWeight: FontWeight.w600,
+                                        color: Color(0xff35007D),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    start: 27,
+                                  ),
+                                  child: Text(
+                                    '${controller.userdata[0].father}',
+                                    style: const TextStyle(
+                                      color: Color(0xff35007D),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Container(
+                                  height: 2,
+                                  width: double.infinity,
+                                  color: const Color(0xFFB39DDB),
+                                ),
+                                //***************
+
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.clear_all_sharp,
+                                      color: Color(0xFF1DE9B6),
+                                      size: 23,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      'Number',
+                                      style: TextStyle(
+                                        //  fontSize: 20,
+                                        //fontWeight: FontWeight.w600,
+                                        color: Color(0xff35007D),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    start: 27,
+                                  ),
+                                  child: Text(
+                                    '${controller.userdata[0].number}',
+                                    style: const TextStyle(
+                                      color: Color(0xff35007D),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Container(
+                                  height: 2,
+                                  width: double.infinity,
+                                  color: const Color(0xFFB39DDB),
+                                ),
+                                //*********
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.email_outlined,
+                                      color: Color(0xFF1DE9B6),
+                                      size: 23,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      'Email',
+                                      style: TextStyle(
+                                        //  fontSize: 20,
+                                        //fontWeight: FontWeight.w600,
+                                        color: Color(0xff35007D),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    start: 27,
+                                  ),
+                                  child: Text(
+                                    '${controller.userdata[0].email}',
+                                    style: const TextStyle(
+                                      color: Color(0xff35007D),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Container(
+                                  height: 2,
+                                  width: double.infinity,
+                                  color: Color(0xFFB39DDB),
+                                ),
+                                //**********
+                              ],
+                            ),
+                          ),
+                        ]),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+              // child:
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  height: 78,
+                  child: BottomNavigationBar(
+                    elevation: 0,
+                    backgroundColor: Color(0xFFE3DEF3),
+                    items: <BottomNavigationBarItem>[
+                      BottomNavigationBarItem(
+                        icon: IconButton(
+                            icon: Icon(Icons.person), onPressed: () {}
+
+                            //profile,
+
+                            ),
+                        label: 'Profile',
+                      ),
+
+                      BottomNavigationBarItem(
+                          icon: IconButton(
+                              icon: Icon(Icons.home),
+                              onPressed: () => Get.to(StudentHome())),
+                          label: 'Home'),
+
+                      // BottomNavigationBarItem(icon: IconButton(icon: Icon(Icons.abc),onPressed: (){Get.to(TeacherProfile1());},)),
+
+                      BottomNavigationBarItem(
+                        icon: IconButton(
+                            icon: Icon(Icons.library_books), onPressed:library
+                            
+
+                            ),
+                        label: 'library',
+                      ),
+
+                      // BottomNavigationBarItem(
+
+                      //   icon: IconButton(onPressed: Navigator.push(''), icon: Icon(Icons.abc)))
+                    ],
+                    selectedItemColor: Colors.purple,
+                    currentIndex: 0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> library() async {
+    await libralyController.getbook();
+    Get.to(Libraly());
+  }
+}

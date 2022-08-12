@@ -17,6 +17,7 @@ import 'package:futurehope/view/teacher/home.dart';
 import 'package:futurehope/view/splash.dart';
 import 'package:futurehope/view/teacher/homeworkteacher.dart';
 import 'package:futurehope/view/teacher/markteacher.dart';
+import 'package:futurehope/view/teacher/navigationbar.dart';
 import 'package:futurehope/view/teacher/weeklyprogramteacher.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      //home: Mark(),
+    //  home: Navi2(),
       initialRoute: "/splash",
       debugShowCheckedModeBanner: false,
       getPages: [

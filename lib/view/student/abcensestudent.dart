@@ -104,13 +104,14 @@ class AbsantStu extends StatelessWidget {
 
                           sections: [
                             PieChartSectionData(
-                                value: controller.presence.toDouble(),
+                              //title: '%',
+                                value: controller.p!,
                                 color: Colors.purple,
                                 showTitle: true,
                                 titleStyle:
                                     TextStyle(fontStyle: FontStyle.italic)),
                             PieChartSectionData(
-                                value: controller.percentAbsant.toDouble(),
+                                value: controller.a!,
                                 color: Colors.orange,
                                 showTitle: true),
                           ]));

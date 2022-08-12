@@ -9,17 +9,19 @@ Data dataFromJson(String str) => Data.fromJson(json.decode(str));
 String dataToJson(Data data) => json.encode(data.toJson());
 
 class Data {
-  Data({
-    required this.body,
-    required this.data,
-  });
+  Data({required this.body,
+   required this.data, 
+  // required this.student
+   });
 
-  int body;
+  int? body;
   List<Datum> data;
+ // List<Datum> student;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        body: json["body"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+      body: json["body"] == null ? null : json["body"]!,
+      data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+      //student: List<Datum>.from(json["all_student"].map((x) => Datum.fromJson(x)))
       );
 
   Map<String, dynamic> toJson() => {
@@ -45,20 +47,20 @@ class Datum {
   String? reason;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    id:  json["id"], //== null ? null : json["id"],
-        absencesId: json["absences_id"] ,//== null ? null : json["absences_id"],
+        id: json["id"] == null ? null : json["id"]!,
+        absencesId: json["absences_id"] == null ? null : json["absences_id"]!,
         firstName: json["first_name"],
         lastName: json["last_name"],
-        type: json["type"],//== null ? null : json["type"],
-        reason: json["reason"],// == null ? null : json["reason"],
+        type: json["type"] == null ? null : json["type"]!,
+        reason: json["reason"] == null ? null : json["reason"]!,
       );
 
   Map<String, dynamic> toJson() => {
-        "id":id,//== null ? null : id,
-        "absences_id": absencesId,//== null ? null : absencesId,
+        "id": id, //== null ? null : id,
+        "absences_id": absencesId, //== null ? null : absencesId,
         "first_name": firstName,
         "last_name": lastName,
-        "type": type,//== null ? null : type,
-        "reason": reason,// == null ? null : reason,
+        "type": type, //== null ? null : type,
+        "reason": reason, // == null ? null : reason,
       };
 }

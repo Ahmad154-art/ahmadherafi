@@ -11,7 +11,7 @@ class WeeklyStuController extends GetxController {
     'Sunday',
     'Monday',
     'Tuesday',
-    'Wensday',
+    'Wednesday',
     'Thursday',
   ];
 

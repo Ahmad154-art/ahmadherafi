@@ -27,10 +27,12 @@ class PercentService {
     if (response.statusCode == 200) {
       print('mmmmmmmmmm');
       var getpercent = jsonDecode(response.body);
-      int presence = getpercent["Presence"];
-      int absant = getpercent["Absence"];
-      prefs.setInt("presence", presence);
-      prefs.setInt("absant", absant);
+      String presence = getpercent["Presence"];
+      String absant = getpercent["Absence"];
+      prefs.setString("presence", presence);
+      prefs.setString("absant", absant);
+      
+      
       print(presence);
       print(absant);
 

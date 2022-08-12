@@ -1,6 +1,10 @@
-//import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'dart:convert';
+
 import 'package:futurehope/model/abcense_model.dart';
+import 'package:futurehope/model/absence_store_model.dart';
 import 'package:futurehope/model/student_name_model.dart';
+import 'package:futurehope/service/absant_store_service.dart';
 import 'package:futurehope/service/absence_index_service.dart';
 import 'package:futurehope/service/student_name_service.dart';
 import 'package:futurehope/view/teacher/home.dart';
@@ -9,7 +13,22 @@ import 'package:get/get.dart';
 import '../model/class_model.dart';
 import '../service/class_service.dart';
 
+enum Status { present, absent, delay }
+
 class AbsantController extends GetxController {
+  //******checkbox */
+  var checkbox = false.obs;
+  bool? pp;
+  bool? aa;
+  bool? dd;
+//******get student name */
+  // List<Student> student = [];
+  // StudentNameService studentNameService = StudentNameService();
+
+  ///******update */
+  var presence = 'presence';
+  var absant = 'absant';
+  var delay = 'delay';
   //********** */
   late List<TeacherClass> classtlist;
   List<String> listname = [];
@@ -19,10 +38,16 @@ class AbsantController extends GetxController {
   //******var for index */
   AbcenseIndexService service = AbcenseIndexService();
   StudentNameService studentNameService = StudentNameService();
+  var isLoading = true.obs;
   List<Datum> index = [];
 
   //******** */
   List<Student> getStudent = [];
+  Future<void> student() async {
+    getStudent = await studentNameService.getStudentName(classId);
+    isLoading(false);
+    update();
+  }
 
   var body;
 
@@ -33,99 +58,30 @@ class AbsantController extends GetxController {
   bool val2 = false;
   bool val3 = false;
   // int count=1;
-  List<String> name = [
-    'Rama',
-    'Shadi',
-    'Samer',
-    'Ramez',
-    'Rama',
-    'Shadi',
-    'Samer',
-    'Ramez',
-    'Rama',
-    'Shadi',
-    'Samer',
-    'Ramez',
-  ];
-  List<bool> check = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
-  List<bool> check2 = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
-  List<bool> check3 = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
-  List<DisplayModel> display = [
-    DisplayModel('Rama', 'absant'),
-    DisplayModel('Shadi', 'absant'),
-    DisplayModel('Samer', 'absant'),
-    DisplayModel('Ramez', 'absant'),
-    DisplayModel('Rama', 'absant'),
-    DisplayModel('Shadi', 'absant'),
-    DisplayModel('Samer', 'absant'),
-    DisplayModel('Ramez', 'absant'),
-    DisplayModel('Rama', 'absant'),
-    DisplayModel('Shadi', 'absant'),
-    DisplayModel('Samer', 'absant'),
-    DisplayModel('Ramez', 'absant'),
-  ];
 
-  refrash1(val, i) {
-    check[i] = val;
-    if (val == true) {
-      check2[i] = check3[i] = false;
-    }
+  void refrash1(int id, Status status) {
+    studentStatus[id] = status;
+
+    checkbox(true);
     update();
   }
 
-  refrash2(val, i) {
-    check2[i] = val;
-    if (val == true) {
-      check[i] = check3[i] = false;
-    }
+  void removeStatus(int id) {
+    studentStatus.remove(id);
+    checkbox(false);
     update();
   }
 
-  refrash3(val, i) {
-    check3[i] = val;
-    if (val == true) {
-      check[i] = check2[i] = false;
-    }
-    update();
+  List<String> tafakod = [];
+
+  // Map<String , String>
+
+  var reason = "";
+
+  Map<int, Status> studentStatus = {};
+
+  void gg(index) {
+    print(studentStatus);
   }
 
   // increment() {
@@ -223,6 +179,28 @@ class AbsantController extends GetxController {
       index = await service.getAbsence(classId);
     }
     update();
+  }
+
+  List<StudentAbsence> absencestore = [];
+  void store() {
+    for (var i = 0; i < getStudent.length; i++) {
+      absencestore.add(StudentAbsence(
+        studentId: getStudent[i].id,
+        classId: classId,
+        type: studentStatus[getStudent[i].id] ?? Status.present,
+        reason: reason,
+      ));
+    }
+    var json = jsonEncode(absencestore);
+    print(json);
+  }
+
+  AbsantStoreService absantStoreService = AbsantStoreService();
+  Future<void> storeabsant() async {
+    store();
+    print(json);
+    // print(absencestore[0].type);
+    await absantStoreService.storeabsant(absencestore);
   }
 }
 

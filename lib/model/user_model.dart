@@ -14,21 +14,21 @@ class User {
      required  this.id,
      required   this.message,
      required   this.role,
-     required  this.token,
+   //  required  this.token,
     });
 
     bool status;
     List<Id> id;
     String message;
     int role;
-    String token;
+    //String? token;
 
     factory User.fromJson(Map<String, dynamic> json) => User(
         status: json["status"],
         id: List<Id>.from(json["id"].map((x) => Id.fromJson(x))),
         message: json["message"],
         role: json["role"],
-        token: json["token"],
+      //  token: json["token"] ==null?null:json["token"]!,
     );
 
     Map<String, dynamic> toJson() => {
@@ -36,7 +36,7 @@ class User {
         "id": List<dynamic>.from(id.map((x) => x.toJson())),
         "message": message,
         "role": role,
-        "token": token,
+       // "token": token,
     };
 }
 

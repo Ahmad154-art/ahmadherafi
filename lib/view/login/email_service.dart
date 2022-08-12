@@ -29,10 +29,14 @@ class EmailService {
       var jsonResponce = userFromJson(response.body);
       var json = jsonDecode(response.body);
       var role = json["role"];
+      var userId = json["user_id"];
+      print('aaaaaaaaaaaaaaaaa');
+      print(userId);
       print('yyy');
       print(role);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setInt("role", role);
+      prefs.setInt("user_id", userId);
 
       // var jsonResponse = jsonDecode(response.body);
       //token = jsonResponse['token'];

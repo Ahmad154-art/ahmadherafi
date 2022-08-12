@@ -24,4 +24,9 @@ class serverConfig {
   static const absant = '/api/absence/show/';
   static const installment = '/api/free/show/';
   static const percent = '/api/absence/absence/';
+  static const library = '/api/book';
+  static const profile = '/api/profile';
+  static const exam = '/api/final/';
+  static const absantstore = '/api/absence/insert';
+  static const week = '/api/teacher/';
 }

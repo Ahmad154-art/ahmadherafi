@@ -1,16 +1,19 @@
 import 'dart:convert';
 
 import 'package:futurehope/config/server_config.dart';
-import 'package:futurehope/config/userinformation.dart';
-import 'package:futurehope/main.dart';
+
+import 'package:futurehope/model/profile_model.dart';
 import 'package:futurehope/storage.dart';
 import 'package:http/http.dart' as http;
 
-class LogoutService {
+class ProfileService {
   //var token = '';
   //int role = 0;
-  var url = Uri.parse(serverConfig.domainName + serverConfig.logout);
-  Future<bool> logout(var token) async {
+  var token;
+  var url = Uri.parse(serverConfig.domainName + serverConfig.profile);
+  Future<List<Datum>> profile() async {
+    SecureStorge storge = SecureStorge();
+    token = await storge.read('token');
     var response = await http.get(
       url,
       headers: {
@@ -22,22 +25,22 @@ class LogoutService {
     print(response.statusCode);
     print(response.body);
     print(token);
-    SecureStorge storge = SecureStorge();
-    await storge.read('token');
-    UserInformation.user_Token = token;
+
+    //await storge.read('token');
+    //UserInformation.user_Token = token;
     if (response.statusCode == 200) {
-      var jsonResponse = jsonDecode(response.body);
+      var jsonResponse = profileFromJson(response.body);
       //token = jsonResponse['token'];
       //role = jsonResponse['role'];
 
       // UserInformation.role = role;
 
       print(token);
-      return true;
+      return jsonResponse.data;
     } else if (response.statusCode == 401) {
-      return false;
+      return [];
     } else {
-      return false;
+      return [];
     }
   }
 }

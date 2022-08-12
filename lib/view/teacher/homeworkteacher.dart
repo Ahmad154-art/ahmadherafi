@@ -197,6 +197,7 @@ class Task extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             onTapped();
+                            print('jjjjjjjjjjj');
                             // task.increment();
                             // task.len = 5;
                           },

@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AbsantStuController extends GetxController {
-  var presence;
-  var percentAbsant;
+  String? presence;
+  String? percentAbsant;
+  double? p;
+  double? a;
   var percentStatus = true;
   var load = true.obs;
   PercentService percentService = PercentService();
@@ -20,10 +22,14 @@ class AbsantStuController extends GetxController {
   }
 
   Future<void> percent() async {
+    // p = percentService.presence;
+    // a = percentService.absant;
     percentStatus = await percentService.percent();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    presence = prefs.getInt("presence");
-    percentAbsant = prefs.getInt("absant");
+    presence = prefs.getString("presence");
+    percentAbsant = prefs.getString("absant");
+    p = double.parse(presence!);
+    a = double.parse(percentAbsant!);
     load(false);
     print(presence);
     print(percentAbsant);

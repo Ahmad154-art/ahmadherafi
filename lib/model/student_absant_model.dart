@@ -34,12 +34,12 @@ class AbsantElement {
 
   String type;
   String? reason;
-  String createdAt;
+  String? createdAt;
 
   factory AbsantElement.fromJson(Map<String, dynamic> json) => AbsantElement(
         type: json["type"],
         reason: json["reason"] == null ? null : json["reason"]!,
-        createdAt: json["created_at"],
+        createdAt: json["created_at"] ==null?null:json["created_at"],
       );
 
   Map<String, dynamic> toJson() => {

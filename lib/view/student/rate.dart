@@ -43,18 +43,18 @@ class RateState extends State<Rate> {
 
   Widget buildshow(index) {
     //index = rate.rate.length;
-    return LineChart(
-        LineChartData(borderData: FlBorderData(show: false), lineBarsData: [
-      LineChartBarData(spots: [
-        FlSpot(rate.type[index], rate.rate[index].markAverage.toDouble()),
-        FlSpot(rate.type[1], rate.rate[1].markAverage.toDouble()),
-        // FlSpot(rate.type[2], rate.rate[3].markAverage),
-        // FlSpot(rate.type[2], rate.avg[2]),
-        //  FlSpot(rate.type[3], rate.avg[3]),
-        //  FlSpot(rate.type[4], rate.avg[4]),
-        // FlSpot(rate.type[5], rate.rate[5].markAverage),
-        // FlSpot(rate.type[6], rate.avg[6]),
-      ])
-    ]));
+
+    List<FlSpot> spots = [];
+
+    int i = 0;
+    rate.rate.forEach((e) {
+      spots.add(FlSpot(rate.type[i], rate.rate[i].markAverage.toDouble()));
+      i++;
+    });
+
+    return LineChart(LineChartData(
+      borderData: FlBorderData(show: false),
+      lineBarsData: [LineChartBarData(spots: spots)],
+    ));
   }
 }

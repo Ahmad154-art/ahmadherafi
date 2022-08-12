@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:futurehope/controller/classcontroller.dart';
+import 'package:futurehope/view/teacher/abant_show.dart';
 import 'package:get/get.dart';
 
 import '../../controller/absant_controller.dart';
@@ -142,7 +143,7 @@ class Absant extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               onTapped();
-                             // absant.increment();
+                              // absant.increment();
                               //absant.count=15;
                             },
                             child: Container(
@@ -207,45 +208,64 @@ class Absant extends StatelessWidget {
                       GetBuilder<AbsantController>(
                           init: AbsantController(),
                           builder: (absant) {
-                            if (absant.body == 1) {
-                              return Expanded(
-                                  child: Container(
-                                width: double.infinity,
+                            // if (absant.body == 1) {
+                            //   return Expanded(
+                            //       child: Container(
+                            //     width: double.infinity,
+                            //     child: Column(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       children: const [
+                            //         Text(
+                            //           'Select Class To Display Name',
+                            //           style: TextStyle(
+                            //             fontWeight: FontWeight.w400,
+                            //             fontSize: 20,
+                            //             color: Color(0xff35007D),
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ));
+                            // }
+                            //  else if (absant.body == 2) {
+                            return Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      'Select Class To Display Name',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 20,
-                                        color: Color(0xff35007D),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ));
-                            } else if (absant.body == 2) {
-                              return Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                        child: ListView.separated(
+                                  children: [
+                                    Expanded(
+                                      child: Obx(() {
+                                        if (absant.isLoading.isTrue) {
+                                          return const Center(
+                                            child: CircularProgressIndicator(
+                                              color: Colors.purple,
+                                            ),
+                                          );
+                                        }
+                                        return ListView.separated(
                                             itemBuilder: (context, index) {
-                                              return buildStore(
-                                                  absant.name[index],
-                                                  absant.check[index],
-                                                  absant.check2[index],
-                                                  absant.check3[index],
-                                                  context,
-                                                  index);
-                                            },
+                                              int id =
+                                                  absant.getStudent[index].id;
+                                              bool isStudentAbsent =
+                                                  absant.studentStatus[id] ==
+                                                      Status.absent;
 
-                                            //  else
-                                            // return Text('f');
-                                            //},
+                                              bool isStudentPresent =
+                                                  absant.studentStatus[id] ==
+                                                      Status.present;
+
+                                              bool isStudentDelay =
+                                                  absant.studentStatus[id] ==
+                                                      Status.delay;
+
+                                              return buildStore(
+                                                isStudentPresent,
+                                                isStudentAbsent,
+                                                isStudentDelay,
+                                                context,
+                                                index,
+                                              );
+                                            },
                                             separatorBuilder:
                                                 (context, index) => Padding(
                                                       padding:
@@ -270,56 +290,58 @@ class Absant extends StatelessWidget {
                                                       ),
                                                     ),
                                             itemCount:
-                                                absant.getStudent.length),
-                                      ),
-                                    ],
-                                  ),
+                                                absant.getStudent.length);
+                                      }),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            } else {
-                              return Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                        child: ListView.separated(
-                                            itemBuilder: (context, index) {
-                                              return buildDisplay(
-                                                  absant.display[index],
-                                                  context,
-                                                  index);
-                                            },
-                                            separatorBuilder:
-                                                (context, index) => Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .only(
-                                                        start: 10,
-                                                        end: 10,
-                                                        top: 5,
-                                                        bottom: 5,
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .only(
-                                                          top: 10,
-                                                        ),
-                                                        child: Container(
-                                                          height: 1,
-                                                          color: const Color(
-                                                              0xFF9575CD),
-                                                        ),
-                                                      ),
-                                                    ),
-                                            itemCount: absant.index.length),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }
+                              ),
+                            );
+                            //  }
+                            //  else {
+                            //   return Expanded(
+                            //     child: Padding(
+                            //       padding: const EdgeInsets.all(8.0),
+                            //       child: Column(
+                            //         children: [
+                            //           Expanded(
+                            //             child: ListView.separated(
+                            //                 itemBuilder: (context, index) {
+                            //                   return buildDisplay(
+                            //                       absant.display[index],
+                            //                       context,
+                            //                       index);
+                            //                 },
+                            //                 separatorBuilder:
+                            //                     (context, index) => Padding(
+                            //                           padding:
+                            //                               const EdgeInsetsDirectional
+                            //                                   .only(
+                            //                             start: 10,
+                            //                             end: 10,
+                            //                             top: 5,
+                            //                             bottom: 5,
+                            //                           ),
+                            //                           child: Padding(
+                            //                             padding:
+                            //                                 const EdgeInsetsDirectional
+                            //                                     .only(
+                            //                               top: 10,
+                            //                             ),
+                            //                             child: Container(
+                            //                               height: 1,
+                            //                               color: const Color(
+                            //                                   0xFF9575CD),
+                            //                             ),
+                            //                           ),
+                            //                         ),
+                            //                 itemCount: absant.index.length),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   );
+                            // }
                             // return  Text('f');
                           }),
                     ],
@@ -348,11 +370,39 @@ class Absant extends StatelessWidget {
                         color: const Color(0xFF42A5F5),
                       ),
                       const SizedBox(
-                        width: 225,
+                        width: 15,
                       ),
                       GestureDetector(
                         onTap: () {
-                          absant.action();
+                          Get.to(DisplayAbsant());
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: Container(
+                            height: 40,
+                            width: 100,
+                            child: const Center(
+                              child: Text(
+                                'show ',
+                                style: TextStyle(
+                                  color: Color(0xFFFFFFFF),
+                                ),
+                              ),
+                            ),
+                            color: const Color(0xff35007D),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 100,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          onpressed();
+                          // absant.action();
                           //absant.count=15;
                         },
                         child: Container(
@@ -363,9 +413,9 @@ class Absant extends StatelessWidget {
                           child: Container(
                             height: 40,
                             width: 100,
-                            child: Center(
+                            child: const Center(
                               child: Text(
-                                '${absant.write()} ',
+                                'send ',
                                 style: const TextStyle(
                                   color: Color(0xFFFFFFFF),
                                 ),
@@ -386,13 +436,13 @@ class Absant extends StatelessWidget {
     );
   }
 
-  Widget buildStore(
-      String name, bool check1, bool check2, bool check3, context, int index) {
+  Widget buildStore(bool check1, bool check2, bool check3, context, int index) {
     return Row(
       children: [
         Container(
             width: 100,
-            child: Text('${absant.getStudent[index].firstName} ${absant.getStudent[index].lastName} ')),
+            child: Text(
+                '${absant.getStudent[index].firstName} ${absant.getStudent[index].lastName} ')),
         GetBuilder<AbsantController>(builder: (abs) {
           return Expanded(
             child: SingleChildScrollView(
@@ -408,14 +458,14 @@ class Absant extends StatelessWidget {
                     ),
                   ),
                   Checkbox(
-                    onChanged: (val) {
-                      /*  if(mod.type==true){
-                           mod.type==false;
-                         }
-                         else
-                           mod.type==true;
-*/
-                      abs.refrash1(val, index);
+                    onChanged: (value) {
+                      int id = absant.getStudent[index].id;
+                      if (value!) {
+                        abs.refrash1(id, Status.present);
+                        absant.gg(index);
+                      } else {
+                        abs.removeStatus(id);
+                      }
                     },
                     value: check1,
                     checkColor: Colors.white,
@@ -433,60 +483,66 @@ class Absant extends StatelessWidget {
                   ),
                   Checkbox(
                     onChanged: (value) {
-                      abs.refrash2(value, index);
+                      int id = absant.getStudent[index].id;
+                      if (value!) {
+                        abs.refrash1(id, Status.absent);
+                        absant.gg(index);
+                      } else {
+                        abs.removeStatus(id);
+                      }
                     },
                     value: check2,
                     checkColor: Colors.white,
                     activeColor: const Color(0xFF42A5F5),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text(
-                                'Reason',
-                              ),
-                              content: Padding(
-                                padding: const EdgeInsetsDirectional.only(
-                                  top: 10,
-                                  start: 10,
-                                  end: 10,
-                                ),
-                                child: TextFormField(
-                                  decoration: const InputDecoration(
-                                    hintText: 'Write Reason',
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xff35007D),
-                                      ),
-                                    ),
-                                  ),
-                                  cursorColor: const Color(0xff35007D),
-                                  onFieldSubmitted: (desc) {},
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    child: const Text('ok')),
-                                TextButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    child: const Text('cancel')),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.edit_road,
-                        color: Color(0xff35007D),
-                      )),
+                  // IconButton(
+                  //     onPressed: () {
+                  //       showDialog(
+                  //         context: context,
+                  //         builder: (context) {
+                  //           return AlertDialog(
+                  //             title: const Text(
+                  //               'Reason',
+                  //             ),
+                  //             content: Padding(
+                  //               padding: const EdgeInsetsDirectional.only(
+                  //                 top: 10,
+                  //                 start: 10,
+                  //                 end: 10,
+                  //               ),
+                  //               child: TextFormField(
+                  //                 decoration: const InputDecoration(
+                  //                   hintText: 'Write Reason',
+                  //                   focusedBorder: UnderlineInputBorder(
+                  //                     borderSide: BorderSide(
+                  //                       color: Color(0xff35007D),
+                  //                     ),
+                  //                   ),
+                  //                 ),
+                  //                 cursorColor: const Color(0xff35007D),
+                  //                 onFieldSubmitted: (desc) {},
+                  //               ),
+                  //             ),
+                  //             actions: [
+                  //               TextButton(
+                  //                   onPressed: () {
+                  //                     Get.back();
+                  //                   },
+                  //                   child: const Text('ok')),
+                  //               TextButton(
+                  //                   onPressed: () {
+                  //                     Get.back();
+                  //                   },
+                  //                   child: const Text('cancel')),
+                  //             ],
+                  //           );
+                  //         },
+                  //       );
+                  //     },
+                  //     icon: const Icon(
+                  //       Icons.edit_road,
+                  //       color: Color(0xff35007D),
+                  //     )),
                   const SizedBox(
                     width: 15,
                   ),
@@ -498,61 +554,76 @@ class Absant extends StatelessWidget {
                     ),
                   ),
                   Checkbox(
-                    onChanged: (va) {
-                      abs.refrash3(va, index);
+                    onChanged: (value) {
+                      int id = absant.getStudent[index].id;
+                      if (value!) {
+                        abs.refrash1(id, Status.delay);
+                        absant.gg(index);
+                      } else {
+                        abs.removeStatus(id);
+                      }
                     },
                     value: check3,
                     checkColor: Colors.white,
                     activeColor: const Color(0xFF5E35B1),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text(
-                                'Reason',
-                              ),
-                              content: Padding(
-                                padding: const EdgeInsetsDirectional.only(
-                                  top: 10,
-                                  start: 10,
-                                  end: 10,
-                                ),
-                                child: TextFormField(
-                                  decoration: const InputDecoration(
-                                    hintText: 'Write Reason',
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xff35007D),
-                                      ),
-                                    ),
-                                  ),
-                                  cursorColor: Color(0xff35007D),
-                                  onFieldSubmitted: (desc) {},
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    child: const Text('ok')),
-                                TextButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    child: const Text('cancel')),
-                              ],
-                            );
-                          },
-                        );
+                  Container(
+                    width: 75,
+                    child: TextField(
+                      onChanged: (value) {
+                        absant.reason = value;
                       },
-                      icon: const Icon(
-                        Icons.edit_road,
-                        color: Color(0xff35007D),
-                      )),
+                      decoration: const InputDecoration(hintText: 'reason'),
+                    ),
+                  )
+                  // IconButton(
+                  //     onPressed: () {
+                  //       showDialog(
+                  //         context: context,
+                  //         builder: (context) {
+                  //           return AlertDialog(
+                  //             title: const Text(
+                  //               'Reason',
+                  //             ),
+                  //             content: Padding(
+                  //               padding: const EdgeInsetsDirectional.only(
+                  //                 top: 10,
+                  //                 start: 10,
+                  //                 end: 10,
+                  //               ),
+                  //               child: TextFormField(
+                  //                 decoration: const InputDecoration(
+                  //                   hintText: 'Write Reason',
+                  //                   focusedBorder: UnderlineInputBorder(
+                  //                     borderSide: BorderSide(
+                  //                       color: Color(0xff35007D),
+                  //                     ),
+                  //                   ),
+                  //                 ),
+                  //                 cursorColor: Color(0xff35007D),
+                  //                 onFieldSubmitted: (desc) {},
+                  //               ),
+                  //             ),
+                  //             actions: [
+                  //               TextButton(
+                  //                   onPressed: () {
+                  //                     Get.back();
+                  //                   },
+                  //                   child: const Text('ok')),
+                  //               TextButton(
+                  //                   onPressed: () {
+                  //                     Get.back();
+                  //                   },
+                  //                   child: const Text('cancel')),
+                  //             ],
+                  //           );
+                  //         },
+                  //       );
+                  //     },
+                  //     icon: const Icon(
+                  //       Icons.edit_road,
+                  //       color: Color(0xff35007D),
+                  //     )),
                 ]),
               ),
             ),
@@ -598,8 +669,8 @@ class Absant extends StatelessWidget {
                       content: Padding(
                         padding: const EdgeInsetsDirectional.only(
                           top: 10,
-                          start: 10,
-                          end: 10,
+                          //  start: 10,
+                          //  end: 10,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -610,12 +681,13 @@ class Absant extends StatelessWidget {
                                   const Text(
                                     "Present",
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       color: Color(0xff35007D),
                                     ),
                                   ),
                                   Checkbox(
                                     onChanged: (val) {
+                                      print(absant.presence);
                                       edit.edit1(val);
                                     },
                                     value: edit.val1,
@@ -623,17 +695,18 @@ class Absant extends StatelessWidget {
                                     activeColor: const Color(0xff35007D),
                                   ),
                                   const SizedBox(
-                                    width: 12,
+                                    width: 8,
                                   ),
                                   const Text(
                                     "Absant",
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       color: Color(0xff35007D),
                                     ),
                                   ),
                                   Checkbox(
                                     onChanged: (val) {
+                                      print(absant.absant);
                                       edit.edit2(val);
                                     },
                                     value: edit.val2,
@@ -641,17 +714,18 @@ class Absant extends StatelessWidget {
                                     activeColor: const Color(0xff35007D),
                                   ),
                                   const SizedBox(
-                                    width: 12,
+                                    width: 8,
                                   ),
                                   const Text(
                                     "Delay",
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       color: Color(0xff35007D),
                                     ),
                                   ),
                                   Checkbox(
                                     onChanged: (val) {
+                                      print(absant.delay);
                                       edit.edit3(val);
                                     },
                                     value: edit.val3,
@@ -713,6 +787,11 @@ class Absant extends StatelessWidget {
   }
 
   Future<void> onTapped() async {
-    await absant.action();
+    await absant.student();
+    // await class_contoller.sendClass();
+  }
+
+  Future<void> onpressed() async {
+    await absant.storeabsant();
   }
 }
