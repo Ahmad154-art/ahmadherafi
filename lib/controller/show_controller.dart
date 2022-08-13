@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:futurehope/model/absence_show_model.dart';
+import 'package:futurehope/service/absence_update_service.dart';
 import 'package:get/get.dart';
 
 import '../model/class_model.dart';
@@ -8,6 +9,10 @@ import '../service/class_service.dart';
 import '../view/teacher/markteacher.dart';
 
 class AbsantController1 extends GetxController {
+  var state;
+  var reason;
+  var id;
+
   var load = true.obs;
   var isLoading = true.obs;
   late List<TeacherClass> classtlist;
@@ -216,6 +221,12 @@ class AbsantController1 extends GetxController {
   Future<void> show() async {
     absenceshow = await service.getAbsence(classId);
     isLoading(false);
+    update();
+  }
+
+  AbsenceUpdate absenceUpdate1 = AbsenceUpdate();
+  Future<void> absenceUpdate() async {
+    await absenceUpdate1.absantUpdate(id, state, reason);
     update();
   }
 

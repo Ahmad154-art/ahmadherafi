@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:futurehope/components/background.dart';
+import 'package:futurehope/config/server_config.dart';
 import 'package:futurehope/controller/exam_controller.dart';
 import 'package:futurehope/controller/installment_controller.dart';
 import 'package:futurehope/controller/student_absant_controller.dart';
@@ -44,6 +45,8 @@ class StudentState extends State<StudentHome> {
       Get.put(TeacherProfileController());
   LibralyController libralyController = Get.put(LibralyController());
   ExamController examController = Get.put(ExamController());
+  TeacherProfileController profileController =
+      Get.put(TeacherProfileController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,17 +102,27 @@ class StudentState extends State<StudentHome> {
                       //  Padding(padding: EdgeInsets.all(50)),
                       const Padding(
                           padding: EdgeInsets.only(left: 1000, top: 100)),
-                      const CircleAvatar(
-                        backgroundImage: AssetImage('images/ahmad.jpg'),
-                        // child: Image(image: AssetImage('images/ahmad.jpg'),fit: BoxFit.fitHeight,),
-                        // child: Text('d'),
-                        // child: ClipRRect(
+                      Obx(() {
+                        if (profileController.isLoading.isTrue) {
+                          return Center(
+                            child:
+                                CircularProgressIndicator(color: Colors.purple),
+                          );
+                        }
+                        return CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              "${serverConfig.domainName}/${profileController.image}"),
+                          //AssetImage('images/ahmad.jpg'),
+                          // child: Image(image: AssetImage('images/ahmad.jpg'),fit: BoxFit.fitHeight,),
+                          // child: Text('d'),
+                          // child: ClipRRect(
 
-                        //   child:Image(image: AssetImage('images/ahmad.jpg'),fit: BoxFit.cover,),
-                        // ),
-                        maxRadius: 45,
-                        backgroundColor: Colors.white54,
-                      ),
+                          //   child:Image(image: AssetImage('images/ahmad.jpg'),fit: BoxFit.cover,),
+                          // ),
+                          maxRadius: 45,
+                          backgroundColor: Colors.white54,
+                        );
+                      })
                     ]
                         //   heightFactor: 3.7,
                         ),
@@ -174,9 +187,8 @@ class StudentState extends State<StudentHome> {
                     const Padding(padding: EdgeInsets.only(left: 20)),
                     GestureDetector(
                       onTap: (() {
-                        
                         Get.to(() => AllWeekly());
-                       // exam();
+                        // exam();
                       }),
                       // onTap:() => print('d'),
                       child: Container(
@@ -338,6 +350,7 @@ class StudentState extends State<StudentHome> {
       prefs.remove('presence');
       prefs.remove("absant");
       prefs.remove("user_id");
+      prefs.remove("img_url");
     }
   }
 

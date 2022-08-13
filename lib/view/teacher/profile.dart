@@ -106,7 +106,9 @@ class TeacherProfile1 extends StatelessWidget {
                             //  crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(children: [
-                                const CircleAvatar(
+                                CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      "${serverConfig.domainName}/${controller.userdata[0].image}"),
                                   // backgroundImage: NetworkImage(
                                   //     controller.userdata[0].image,
                                   //     scale: 1),

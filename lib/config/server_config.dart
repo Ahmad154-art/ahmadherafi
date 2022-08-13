@@ -29,4 +29,5 @@ class serverConfig {
   static const exam = '/api/final/';
   static const absantstore = '/api/absence/insert';
   static const week = '/api/teacher/';
+  static const absecneupdate = '/api/absence/update/';
 }

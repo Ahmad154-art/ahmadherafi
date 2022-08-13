@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:futurehope/config/server_config.dart';
 import 'package:futurehope/controller/library_contoller.dart';
 import 'package:futurehope/view/student/homestudent.dart';
 import 'package:futurehope/view/teacher/library.dart';
@@ -98,20 +99,18 @@ class StuProfile1 extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(children: [
-                                  Container(
-                                    height: 90,
-                                    width: 90,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color(0xFFD1C4E9),
-                                    ),
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    child: const Center(
-                                        child: Icon(
-                                      Icons.person,
-                                      size: 60,
-                                      color: Colors.white,
-                                    )),
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        "${serverConfig.domainName}/${controller.userdata[0].image}"),
+                                    // backgroundImage: NetworkImage(
+                                    //     controller.userdata[0].image,
+                                    //     scale: 1),
+                                    //  backgroundImage: ?FadeInImage.assetNetwork(
+                                    //  placeholder: 'images/loading.gif',
+                                    // image:
+                                    //  'http://${serverConfig.domainName} /profile/${controller.userdata[0].image}' ): Image.asset('wallpaper.jpg');
+                                    maxRadius: 45,
+                                    backgroundColor: Colors.white,
                                   ),
                                   const SizedBox(
                                     width: 18,
@@ -377,10 +376,8 @@ class StuProfile1 extends StatelessWidget {
 
                       BottomNavigationBarItem(
                         icon: IconButton(
-                            icon: Icon(Icons.library_books), onPressed:library
-                            
-
-                            ),
+                            icon: Icon(Icons.library_books),
+                            onPressed: library),
                         label: 'library',
                       ),
 

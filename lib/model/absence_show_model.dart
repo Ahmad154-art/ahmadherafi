@@ -37,14 +37,14 @@ class Datum {
     String firstName;
     String lastName;
     String type;
-    String reason;
+    String? reason;
 
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         absencesId: json["absences_id"],
         firstName: json["first_name"],
         lastName: json["last_name"],
         type: json["type"],
-        reason: json["reason"],
+        reason: json["reason"]??null,
     );
 
     Map<String, dynamic> toJson() => {

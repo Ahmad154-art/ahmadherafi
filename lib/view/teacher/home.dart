@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:futurehope/config/server_config.dart';
 import 'package:futurehope/storage.dart';
 import 'package:futurehope/view/login/logoutcontoller.dart';
 
@@ -24,10 +25,18 @@ import '../../controller/profile_contoller.dart';
 import 'homeworkteacher.dart';
 
 class Home extends StatelessWidget {
+  String? index;
+  // var image;
+  // Future<void> shared() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   image = prefs.getString("img_url");
+  // }
+
   LogoutController controller = Get.put(LogoutController());
   LibralyController libralyController = Get.put(LibralyController());
   TeacherProfileController profileController =
       Get.put(TeacherProfileController());
+
   // LogoutController controller = Get.find();
 
   //final  controller = Get.lazyPut(() => LogoutController());
@@ -85,17 +94,26 @@ class Home extends StatelessWidget {
                         [
                   //  Padding(padding: EdgeInsets.all(50)),
                   const Padding(padding: EdgeInsets.only(left: 1000, top: 125)),
-                  const CircleAvatar(
-                    backgroundImage: AssetImage('images/ahmad.jpg'),
-                    // child: Image(image: AssetImage('images/ahmad.jpg'),fit: BoxFit.fitHeight,),
-                    // child: Text('d'),
-                    // child: ClipRRect(
+                  Obx(() {
+                    if (profileController.isLoading.isTrue) {
+                      return Center(
+                        child: CircularProgressIndicator(color: Colors.purple),
+                      );
+                    }
+                    return CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "${serverConfig.domainName}/${profileController.image}"),
+                      //AssetImage('images/ahmad.jpg'),
+                      // child: Image(image: AssetImage('images/ahmad.jpg'),fit: BoxFit.fitHeight,),
+                      // child: Text('d'),
+                      // child: ClipRRect(
 
-                    //   child:Image(image: AssetImage('images/ahmad.jpg'),fit: BoxFit.cover,),
-                    // ),
-                    maxRadius: 45,
-                    backgroundColor: Colors.white54,
-                  ),
+                      //   child:Image(image: AssetImage('images/ahmad.jpg'),fit: BoxFit.cover,),
+                      // ),
+                      maxRadius: 45,
+                      backgroundColor: Colors.white54,
+                    );
+                  })
                 ]
                     //   heightFactor: 3.7,
                     ),
@@ -318,6 +336,7 @@ class Home extends StatelessWidget {
       prefs.remove('presence');
       prefs.remove("absant");
       prefs.remove("user_id");
+      prefs.remove("img_url");
     }
   }
 

@@ -244,7 +244,7 @@ class DisplayAbsant extends StatelessWidget {
                                           if (absant.absenceshow.isEmpty) {
                                             return Text('not founf');
                                           }
-                                           return ListView.separated(
+                                          return ListView.separated(
                                               itemBuilder: (context, index) {
                                                 return buildDisplay(
                                                     absant.display[index],
@@ -364,6 +364,7 @@ class DisplayAbsant extends StatelessWidget {
           IconButton(
             onPressed: () {
               showDialog(
+                
                   context: context,
                   builder: (context) {
                     return AlertDialog(
@@ -372,9 +373,9 @@ class DisplayAbsant extends StatelessWidget {
                       ),
                       content: Padding(
                         padding: EdgeInsetsDirectional.only(
-                          top: 10,
-                          start: 10,
-                          end: 10,
+                        //  top: 10,
+                          //start: 10,
+                         // end: 10,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -382,11 +383,14 @@ class DisplayAbsant extends StatelessWidget {
                             GetBuilder<AbsantController1>(builder: (edit) {
                               return Padding(
                                 padding: EdgeInsetsDirectional.only(
-                                  top: 10,
-                                  start: 10,
-                                  end: 10,
+                                //  top: 10,
+                                 // start: 10,
+                                 // end: 10,
                                 ),
                                 child: TextFormField(
+                                  onChanged: (value) {
+                                    absant.state = value;
+                                  },
                                   decoration: InputDecoration(
                                     hintText: 'Edit State',
                                     focusedBorder: UnderlineInputBorder(
@@ -400,9 +404,9 @@ class DisplayAbsant extends StatelessWidget {
                                 ),
                               );
                             }),
-                            SizedBox(
-                              height: 20,
-                            ),
+                            // SizedBox(
+                            //   height: 20,
+                            // ),
                             Padding(
                               padding: EdgeInsetsDirectional.only(
                                 top: 10,
@@ -410,6 +414,9 @@ class DisplayAbsant extends StatelessWidget {
                                 end: 10,
                               ),
                               child: TextFormField(
+                                onChanged: (value) {
+                                  absant.reason = value;
+                                },
                                 decoration: InputDecoration(
                                   hintText: 'Write Reason',
                                   focusedBorder: UnderlineInputBorder(
@@ -428,6 +435,8 @@ class DisplayAbsant extends StatelessWidget {
                       actions: [
                         TextButton(
                             onPressed: () {
+                              absant.id = absant.absenceshow[index].absencesId;
+                              onpressed();
                               Get.back();
                             },
                             child: Text('ok')),
@@ -452,6 +461,11 @@ class DisplayAbsant extends StatelessWidget {
   }
 
   Future<void> show() async {
+    await absant.show();
+  }
+
+  Future<void> onpressed() async {
+    await absant.absenceUpdate();
     await absant.show();
   }
 }
